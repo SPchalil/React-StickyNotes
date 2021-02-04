@@ -1,0 +1,9 @@
+<div > 
+                        <div > <StickyNote text = "Work" positionX= "100px" positionY = "150px" color = "black" bgColor = "blue"/> </div> 
+                        <div > <StickyNote text = "Work" positionX= "400px" positionY = "600px" color = "black" bgColor = "yellow"/> </div>
+                        <div > <StickyNote text = "Work" positionX= "100px" positionY = "1000px" color = "black" bgColor = "pink"/> </div>
+
+</div>
+
+
+<button className = "board-stickers" onClick={this.handleClick}> stickers </button>
