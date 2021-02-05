@@ -7,3 +7,70 @@
 
 
 <button className = "board-stickers" onClick={this.handleClick}> stickers </button>
+
+/*
+    handleClick() {
+        
+        
+        
+        alert("Hello GAYATHRI!!!");
+    }
+
+        
+
+        //<StickyNote text = "Work" positionX= "100px" positionY = "150px" color = "black" bgColor = "blue"/> ;
+        */
+
+
+//Getting a random integer value for positions in the Board
+let Xmax = 1366;
+let Ymax = 768;
+let Xmin = 0;
+let Ymin = 0;
+
+//Getting a random integer between two values for positionX  
+
+
+function getRandomIntInclusive(Xmin, Xmax) {
+  min = Math.ceil(Xmin);
+  max = Math.floor(Xmax);
+ num =  Math.floor(Math.random() * (max - min + 1) + min);
+return num.toString()+"px"; 
+}
+positionX = getRandomIntInclusive(min, Xmax)
+
+//Getting a random integer between two values for positionY 
+positionY = 
+
+function getRandomIntInclusive(Ymin, Ymax) {
+  min = Math.ceil(Ymin);
+  max = Math.floor(Ymax);
+  num = Math.floor(Math.random() * (max - min + 1) + min);
+  return num.toString()+"px"; 
+}
+---------------------------
+positionX = fun() +'px';
+positionY = fun() + 'px';
+
+function myFunction() {
+  var num = 15;
+  var n = num.toString()+"px";
+---------------------------------------------
+
+<header className="App-header" onClick={() => this.setState({currentStickyNotes: <StickyNote text = "Work" positionX= "100px" positionY = "150px" color = "black" bgColor = "blue"/>})}> 
+                    {this.state.currentStickyNotes}
+</header>
+
+render => {this.renderStickyNotes()}
+
+renderStickyNotes(){
+return (
+      <StickyNote
+        value={this.state.squares[i]}
+        onClick={() => this.handleClick(i)}
+      />
+    );
+  }
+
+
+}
