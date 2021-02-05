@@ -6,16 +6,16 @@ class Board extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-            currentStickyNotes: null
+            currentStickyNotes: []
             
         };
       } 
 
     
-    renderStickyNotes(){
+    addStickyNotes(){
         const currentStickyNotes = this.state.currentStickyNotes;
-        const Xmax = 500;
-        const Ymax = 50;
+        const Xmax = 1160;
+        const Ymax = 560;
         const Xmin = 0;
         const Ymin = 0;
         
@@ -23,19 +23,36 @@ class Board extends React.Component{
         let posY = getRandomYInt(Ymin, Ymax);
         console.log (posX);
         console.log (posY);
-        
-        
-        this.setState({currentStickyNotes: <StickyNote text = "Work" positionX= {posX} positionY = {posY} color = "black" bgColor = "pink"/>})
-        
 
+        
+        let bcolor = generateColor ();
+        
+        
+        this.setState({
+            currentStickyNotes: currentStickyNotes.concat(
+                [
+                    <StickyNote 
+                        text = "Work" 
+                        positionX= {posX} 
+                        positionY = {posY} 
+                        color = "black" 
+                        bgColor = {bcolor}
+                    /> 
+                ])
+        });
     }
-
+    renderStickyNotes(){
+        return(
+            this.state.currentStickyNotes
+        );
+    }
     
     render(){
+        
         return(
             <div className="App">
-                <header className="App-header" onClick={() => this.renderStickyNotes()}> 
-                    {this.state.currentStickyNotes}
+                <header className="App-header" onClick={() => this.addStickyNotes()}> 
+                    {this.renderStickyNotes()}
                     <img src={postit} className="App-logo" alt="postit" />
                     <div className = "heading"> <h1>Sticky Notes</h1> </div>
                     <div className = "ref"> <h2 className = "name"> .. by Swapna <a className = "link" href="https://github.com/SPchalil/React-StickyNotes"> github </a>  </h2> </div>
@@ -66,6 +83,8 @@ function getRandomYInt(Ymin, Ymax) {
     return num.toString()+"px"; 
   }
 
-
+function generateColor () {
+    return '#' +  Math.random().toString(16).substr(-6);
+  }
 
 export default Board;

@@ -18,8 +18,8 @@ class StickyNote extends React.Component{
     render(){
         
         const stickyNoteStyle = {
-            top: this.state.positionX,
-            left: this.state.positionY,
+            left: this.state.positionX,
+            top: this.state.positionY,
             color: this.state.color,
             backgroundColor: this.state.bgColor 
        };
