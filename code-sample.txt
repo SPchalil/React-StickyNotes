@@ -75,6 +75,46 @@ return (
 
 }
 
+----------------------------------------------------------------
 
+class DivSize extends Component {
+
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      height: 0,
+      width : 0
+    }
+  }
+
+  componentDidMount() {
+    const height = this.divElement.clientHeight;
+    this.setState({ height });
+    const width = this.divElement.clientWidth;
+    this.setState({ width });
+  }
+
+  render() {
+    return (
+      <div 
+        className="test"
+        ref={ (divElement) => { this.divElement = divElement } }
+      >
+        Size: <b>{this.state.height}px</b> but it should be 18px after the render
+	Size: <b>{this.state.width}px</b>
+      </div>
+    )
+  }
+}
+
+render(<DivSize />, document.querySelector('#container'))
+
+HSize:
+657px
+WSize:
+1366px
+
+Size: width: <b>{this.state.width}px</b>, height: <b>{this.state.height}px</b>
 --------------------------
 <StickyNote text = "Work" positionX= {posX} positionY = {posY} color = "black" bgColor = "pink"/>
