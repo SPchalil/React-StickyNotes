@@ -1,3 +1,13 @@
+/*----
+    addNewpostit = () => {
+        this.setState({positionX:"200px", positionY: "200px"});
+    }
+                <div >
+                    <button className = "Add" type="button" onClick={this.addNewpostit}> + </button>
+                </div>
+*/
+
+
 <div > 
                         <div > <StickyNote text = "Work" positionX= "100px" positionY = "150px" color = "black" bgColor = "blue"/> </div> 
                         <div > <StickyNote text = "Work" positionX= "400px" positionY = "600px" color = "black" bgColor = "yellow"/> </div>
@@ -118,3 +128,39 @@ WSize:
 Size: width: <b>{this.state.width}px</b>, height: <b>{this.state.height}px</b>
 --------------------------
 <StickyNote text = "Work" positionX= {posX} positionY = {posY} color = "black" bgColor = "pink"/>
+----------------------------------------------------------
+
+
+
+<canvas width="200" height="200"
+        style="background-color: green"> 
+    </canvas> 
+  
+    <script type="text/javascript"> 
+        function getMousePosition(header, event) { 
+            let rect = header.getBoundingClientRect(); 
+            let x = event.clientX - rect.left; 
+            let y = event.clientY - rect.top; 
+            console.log("Coordinate x: " + x,  
+                        "Coordinate y: " + y); 
+        } 
+      
+        let boardElem = document.querySelector("App-header"); 
+          
+        boardElem.addEventListener("mousedown", function(e) 
+        { 
+            getMousePosition(boardElem, e); 
+        }); 
+
+----------------------------------------------------------------
+
+constructor(props) {
+        super(props);
+        this.state = {
+            text: props.text, 
+            positionX:props.positionX, 
+            positionY: props.positionY,  
+            color:props.color, 
+            bgColor: props.bgColor
+        };
+      }  

@@ -1,20 +1,24 @@
 import React from "react" ;
+import EditText from "./EditText";
+//import { TextInput } from 'react-native';
 
+//****--------------------------StickyNote Class Component ------------------------****//
+
+//Creating a StickyNote with properties (text/positions/color/bgcolor)
 class StickyNote extends React.Component{
-   
+    
     constructor(props) {
         super(props);
-        this.state = {text: props.text, positionX:props.positionX, positionY: props.positionY,  color:props.color, bgColor: props.bgColor};
+        this.state = {
+            text: props.text, 
+            positionX:props.positionX, 
+            positionY: props.positionY,  
+            color:props.color, 
+            bgColor: props.bgColor
+        };
       }  
-/*----
-    addNewpostit = () => {
-        this.setState({positionX:"200px", positionY: "200px"});
-    }
-                <div >
-                    <button className = "Add" type="button" onClick={this.addNewpostit}> + </button>
-                </div>
-*/
 
+/*-----------------Render StickyNote (with the styles and a heading) inside the Board--------------------*/
     render(){
         
         const stickyNoteStyle = {
@@ -26,7 +30,7 @@ class StickyNote extends React.Component{
         return(
             <div className = "postItpad" style={stickyNoteStyle}> 
                 <h6 className = "postHeading">Today's {this.state.text}!</h6>
-
+                <EditText/> 
             </div>
         )
     
