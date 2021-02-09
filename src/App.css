@@ -7,22 +7,6 @@
   pointer-events: none;
   margin-top: 10px;
 }
-/*---
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
---*/
 
 
 .App-header {
@@ -30,23 +14,18 @@
   background-position: center;
   background-size: cover; 
   max-width: 100%;
-  
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  
   font-size: calc(10px + 2vmin);
-  
-  
 }
 
 
 .heading{
   color: #050505;
   font-family: "Times New Roman", Times, serif;
-  
 }
 
 .ref {
@@ -66,14 +45,12 @@
   font-size: 20px;
 }
 
-
 .postItpad{
   height: 200px;
   width : 200px;
   background-color: rgb(27, 174, 233);
   position:absolute;
   box-shadow: 7px 7px 5px rgba(0, 0, 0, 0.1);
-
 }
 
 .postHeading{
@@ -83,13 +60,17 @@
   margin-top: 10px;
   margin-bottom: 5px;
 }
-/*
+
 .Add{
   position:absolute;
   top:10px;
   left: 5px;
+  border-style: solid;
+  border-color:#C7CFB7;
+  cursor: pointer;
+  
 }
-*/
+
 
 .postItpad{
   height: 200px;
@@ -97,6 +78,7 @@
   background-color: rgb(85, 188, 248);
   position:absolute;
   box-shadow: 15px 15px 5px rgba(0, 0, 0, 0.1);
+  
 }
 
 

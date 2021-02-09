@@ -8,7 +8,11 @@
     "@testing-library/user-event": "^12.6.3",
     "expo-cli": "^4.1.6",
     "react": "^17.0.1",
+    "react-art": "*",
+    "react-color": "^2.19.3",
     "react-dom": "^17.0.1",
+    "react-native": "0.63",
+    "react-native-web": "*",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },

@@ -35,13 +35,7 @@ class Board extends React.Component{
         const currentStickyNotes = this.state.currentStickyNotes;
         const Xmax = this.state.width-200;
         const Ymax = this.state.height-200;
-        const Xmin = 0;
-        const Ymin = 0;
         
-        //let posX = getRandomXInt(Xmin, Xmax);  //Random positions 
-        //let posY = getRandomYInt(Ymin, Ymax);
-        //console.log (posX);
-        //console.log (posY);
         console.log(e);
         let posX = e.nativeEvent.offsetX;  // X and Y coordinates of the mouse click position
         let posY = e.nativeEvent.offsetY;
@@ -103,25 +97,7 @@ class Board extends React.Component{
     }
     
 };
-//Size: width: <b>{this.state.width}px</b>, height: <b>{this.state.height}px</b>
 
-/*-----------------------------
-// Functions - Generating random positions 
-function getRandomXInt(Xmin, Xmax) {
-    const min = Math.ceil(Xmin);
-    const max = Math.floor(Xmax);
-    const num =  Math.floor(Math.random() * (max - min + 1) + min);
-    return num.toString()+"px"; 
-  }
-  
-function getRandomYInt(Ymin, Ymax) {
-    const min = Math.ceil(Ymin);
-    const max = Math.floor(Ymax);
-    const num =  Math.floor(Math.random() * (max - min + 1) + min);
-    return num.toString()+"px"; 
-  }
-
-----------------------------------*/
 // Function - Generating random color Sticky Notes 
 
 function generateColor () {

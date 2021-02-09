@@ -1,3 +1,29 @@
+/*---
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+--*/
+
+
+
+
+
+
+
+
+
+
 /*----
     addNewpostit = () => {
         this.setState({positionX:"200px", positionY: "200px"});
@@ -164,3 +190,82 @@ constructor(props) {
             bgColor: props.bgColor
         };
       }  
+
+
+----------------------------------------------------------------------------------------
+/*--------------
+import React from 'react';
+//import React, {useState} from 'react';
+import { TextInput } from 'react-native';
+
+const EditText = () => {
+  const [value, onChangeText] = React.useState('Edit');
+
+  return (
+    <TextInput
+      style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+      onChangeText={text => onChangeText(text)}
+      value={value}
+    />
+  );
+}
+
+export default EditText;
+--------------------*/
+
+
+/*----------------------------------------
+import React, { Component } from 'react';
+import { View, Text, StyleSheet,TextInput,PropTypes} from 'react-native';
+
+
+export default class EditText extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {text:''}
+  }
+  render() {
+    return (
+      <TextInput style={styles.textinput}
+        placeholder = {this.props.placeholder}
+        onChangeText={ this.props.inputChange }
+        onSubmitEditing= {this.props.AddItem}
+      >
+      </TextInput>
+    )
+  }
+}
+------------------------------------------*/
+const Xmin = 0;
+const Ymin = 0;
+
+//let posX = getRandomXInt(Xmin, Xmax);  //Random positions 
+        //let posY = getRandomYInt(Ymin, Ymax);
+        //console.log (posX);
+        //console.log (posY);
+/*-----------------------------
+// Functions - Generating random positions 
+function getRandomXInt(Xmin, Xmax) {
+    const min = Math.ceil(Xmin);
+    const max = Math.floor(Xmax);
+    const num =  Math.floor(Math.random() * (max - min + 1) + min);
+    return num.toString()+"px"; 
+  }
+  
+function getRandomYInt(Ymin, Ymax) {
+    const min = Math.ceil(Ymin);
+    const max = Math.floor(Ymax);
+    const num =  Math.floor(Math.random() * (max - min + 1) + min);
+    return num.toString()+"px"; 
+  }
+
+----------------------------------*/
+
+ <button className = "Add" type="button" onClick={this.NoteColor} style={{backgroundColor: this.state.bgColor}} > + </button>
+
+PickColor = () => {
+    <SketchPicker/>
+}
+
+onClick={(e) => this.setState({showColorPicker: !showColorPicker.value} ) }
