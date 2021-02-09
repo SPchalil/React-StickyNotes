@@ -81,5 +81,13 @@
   
 }
 
+.floatingTooltip {
+  position:absolute;
+  display:block;
+  color:white;
+  top:-155px;
+  left:-225px; 
+}
+
 
 

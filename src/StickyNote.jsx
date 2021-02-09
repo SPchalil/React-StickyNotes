@@ -16,8 +16,10 @@ class StickyNote extends React.Component{
             positionY: props.positionY,  
             color:props.color, 
             bgColor: props.bgColor,
-            showColorPicker:false
+            showColorPicker:false,
+            changeColor:false
         };
+        this.handler = this.handler.bind(this);
       } 
 /*
     NoteColor = () => {
@@ -29,8 +31,15 @@ class StickyNote extends React.Component{
         this.setState({ bgColor: color.hex });
       };
 */
+// This method will be sent to the child component
+handler(newColor) {
+    this.setState({
+        
+        bgColor:newColor
+    });
+}
 
-handlePickColor = (e) => {
+handlePickColor = () => {
     this.setState({
         showColorPicker: !this.state.showColorPicker
     });
@@ -39,10 +48,21 @@ handlePickColor = (e) => {
   };
 renderColorPicker(){
     return(
-        <ColorPicker/>   
+        <ColorPicker
+        background = {this.state.bgColor}
+        handler={this.handler} 
+        />   
     );
 }
+/*
+handleClose = () => {
+    this.setState({ displayColorPicker: false })
+  };
 
+handleChange = (color) => {
+    this.setState({ color: color.rgb })
+  };
+  */
       
 /*-----------------Render StickyNote (with the styles and a heading) inside the Board--------------------*/
     render(){
@@ -55,7 +75,7 @@ renderColorPicker(){
        };
         return(
             <div className = "postItpad" style={stickyNoteStyle} onClick={(e) => e.stopPropagation()}> 
-            <button className = "Add" type="button" onClick={(e) => this.handlePickColor(e)} style={{backgroundColor: this.state.bgColor}}> + </button>
+            <button className = "Add" type="button" onClick={() => this.handlePickColor()} style={{backgroundColor: this.state.bgColor}}> + </button>
                 {this.state.showColorPicker ? this.renderColorPicker() : null }
             
             
