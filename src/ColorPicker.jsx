@@ -7,8 +7,8 @@ class ColorPicker extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            background: props.background,
-            handler: props.handler
+          color: props.color,
+          action: props.action
             
         };
       } 
@@ -18,15 +18,16 @@ class ColorPicker extends React.Component {
       };
  */   
       handleChangeComplete = (newColor) => {
-        this.state.handler(newColor);
+        this.setState({ color: newColor.hex });
+        this.state.action(newColor.hex);
       };
 
     render() {
         return (
             <div className="floatingTooltip">
                 <SketchPicker 
-                    color={ this.state.background }
-                    onChangeComplete={ this.handleChangeComplete() }
+                    color={ this.state.color }
+                    onChangeComplete={ this.handleChangeComplete}
                     
                 />
                 

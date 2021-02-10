@@ -49,13 +49,13 @@ handlePickColor = () => {
 renderColorPicker(){
     return(
         <ColorPicker
-        background = {this.state.bgColor}
-        handler={this.handler} 
+        color = {this.state.bgColor}
+        action={this.handler} 
         />   
     );
 }
 /*
-handleClose = () => {
+handleDelete = () => {
     this.setState({ displayColorPicker: false })
   };
 
@@ -75,9 +75,10 @@ handleChange = (color) => {
        };
         return(
             <div className = "postItpad" style={stickyNoteStyle} onClick={(e) => e.stopPropagation()}> 
-            <button className = "Add" type="button" onClick={() => this.handlePickColor()} style={{backgroundColor: this.state.bgColor}}> + </button>
-                {this.state.showColorPicker ? this.renderColorPicker() : null }
-            
+                <button className = "Add" type="button" onClick={() => this.handlePickColor()} style={{backgroundColor: this.state.bgColor}}> + </button>
+                    {this.state.showColorPicker ? this.renderColorPicker() : null }
+                
+                <button className = "Delete" type="button" onClick={() => this.handleDelete()} style={{backgroundColor: this.state.bgColor}}> x </button>
             
                 <h6 className = "postHeading">Today's {this.state.text}!</h6>
                 <EditText/>
