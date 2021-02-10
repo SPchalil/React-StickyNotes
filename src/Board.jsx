@@ -10,11 +10,13 @@ class Board extends React.Component{
             currentStickyNotes: [],
             height: 0,
             width:0,
+           
+            
         };
         this.resizeHandler = this.resizeHandler.bind(this); 
-        
+        this.hideStickyNoteHandler = this.hideStickyNoteHandler.bind(this);
       } 
-      
+
     //Get the Height, Width of the element after React renders that element/window resize event
     resizeHandler() {
         const width = this.divElement.clientWidth;
@@ -26,9 +28,11 @@ class Board extends React.Component{
         window.addEventListener('resize', this.resizeHandler);
       }
     
-      componentWillUnmount(){
+    componentWillUnmount(){
         window.removeEventListener('resize', this.resizeHandler);
       }
+
+     
 
     /*--------------------------Add a StickyNote --------------------------*/
     addStickyNotes(e){
@@ -49,9 +53,11 @@ class Board extends React.Component{
         }
         
         let bcolor = generateColor (); //Random color generation
-        
+        let index = currentStickyNotes.length;
+
         // New state - Adding new stickyNote to the currentStickyNotes array 
         this.setState({
+           
             currentStickyNotes: currentStickyNotes.concat(
                 [
                     <StickyNote                //calling the StickyNote component passing the properties
@@ -60,25 +66,41 @@ class Board extends React.Component{
                         positionY = {posY} 
                         color = "black" 
                         bgColor = {bcolor}
+                        
+                        index = {index}
+                        action={this. hideStickyNoteHandler} 
                     /> 
                 ])
         });
     }
     
     /*-----------------Render Sticky Notes --------------------*/
+
     renderStickyNotes(){
         return(
             this.state.currentStickyNotes   //current stickynote along with the previous ones
         );
     }
     
+    /*-----------------Hide Sticky Notes --------------------*/
+
+    hideStickyNoteHandler(index){
+        const newStickyNotes = [...this.state.currentStickyNotes];
+        newStickyNotes.splice(index,1);
+        this.setState({
+            currentStickyNotes : newStickyNotes
+        });        
+    }
+
+
     /*-----------------Render Board- with StickyNotes along with Headings --------------------*/
     render(){
         
         return(
             <div className="App">
                 <header className="App-header" onClick={(e) => this.addStickyNotes(e)} ref={ (divElement) => { this.divElement = divElement } }> 
-                    {this.renderStickyNotes()}
+                    
+                  {this.renderStickyNotes() }
                     
                     <img src={postit} className="App-logo" alt="postit" />
                     <div className = "heading"> <h1>Sticky Notes</h1> </div>

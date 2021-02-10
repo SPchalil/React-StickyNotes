@@ -1,11 +1,11 @@
 import React from "react" ;
 import EditText from "./EditText";
 import ColorPicker from "./ColorPicker";
-//import {SketchPicker} from 'react-color';
 
 //****--------------------------StickyNote Class Component ------------------------****//
 
-//Creating a StickyNote with properties (text/positions/color/bgcolor)
+//Creating a StickyNote with properties (text/positions/color/bgcolor/showColorPicker/index/action)
+
 class StickyNote extends React.Component{
     
     constructor(props) {
@@ -17,54 +17,38 @@ class StickyNote extends React.Component{
             color:props.color, 
             bgColor: props.bgColor,
             showColorPicker:false,
-            changeColor:false
+            index:props.index,
+            action: props.action,
         };
         this.handler = this.handler.bind(this);
       } 
-/*
-    NoteColor = () => {
-        this.setState({bgColor:generateColor()});
+
+    handler(newColor) {
+        this.setState({
+            bgColor:newColor
+        });
     }
 
-/*
-    handleChangeComplete = (color) => {
-        this.setState({ bgColor: color.hex });
-      };
-*/
-// This method will be sent to the child component
-handler(newColor) {
-    this.setState({
-        
-        bgColor:newColor
-    });
-}
+    handlePickColor = () => {
+        this.setState({
+            showColorPicker: !this.state.showColorPicker
+        }); 
+    };
 
-handlePickColor = () => {
-    this.setState({
-        showColorPicker: !this.state.showColorPicker
-    });
-    
-    
-  };
-renderColorPicker(){
-    return(
-        <ColorPicker
-        color = {this.state.bgColor}
-        action={this.handler} 
-        />   
-    );
-}
-/*
-handleDelete = () => {
-    this.setState({ displayColorPicker: false })
-  };
+    renderColorPicker(){
+        return(
+            <ColorPicker
+            color = {this.state.bgColor}
+            action={this.handler} 
+            />   
+        );
+    }
 
-handleChange = (color) => {
-    this.setState({ color: color.rgb })
-  };
-  */
-      
-/*-----------------Render StickyNote (with the styles and a heading) inside the Board--------------------*/
+    handleDelete = () => {
+        this.state.action(this.state.index);
+    };
+
+/*-----------------Render StickyNote (with the styles and a heading) inside the Board / Delete the StickyNote--------------------*/
     render(){
         
         const stickyNoteStyle = {
@@ -77,21 +61,12 @@ handleChange = (color) => {
             <div className = "postItpad" style={stickyNoteStyle} onClick={(e) => e.stopPropagation()}> 
                 <button className = "Add" type="button" onClick={() => this.handlePickColor()} style={{backgroundColor: this.state.bgColor}}> + </button>
                     {this.state.showColorPicker ? this.renderColorPicker() : null }
-                
-                <button className = "Delete" type="button" onClick={() => this.handleDelete()} style={{backgroundColor: this.state.bgColor}}> x </button>
-            
+                <button className = "Delete" type="button" onClick={() => this.handleDelete()} style={{backgroundColor: this.state.bgColor}}> x </button>      
                 <h6 className = "postHeading">Today's {this.state.text}!</h6>
                 <EditText/>
-                
             </div>
         )
-    
     }
-    
 };
-
-function generateColor () {
-    return '#' +  Math.random().toString(16).substr(-6);
-}
 
 export default StickyNote;

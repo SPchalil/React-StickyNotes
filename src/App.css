@@ -8,7 +8,6 @@
   margin-top: 10px;
 }
 
-
 .App-header {
   background-image : url(./boardImg.jpg);
   background-position: center;
@@ -21,7 +20,6 @@
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
 }
-
 
 .heading{
   color: #050505;
@@ -79,7 +77,6 @@
   border-color:#C7CFB7;
   cursor: pointer;
 }
-
 
 .postItpad{
   height: 200px;

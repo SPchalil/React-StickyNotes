@@ -271,3 +271,7 @@ PickColor = () => {
 onClick={(e) => this.setState({showColorPicker: !showColorPicker.value} ) }
 
 -----------------------------------------------
+
+function generateColor () {
+    return '#' +  Math.random().toString(16).substr(-6);
+}
