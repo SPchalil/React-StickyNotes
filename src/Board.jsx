@@ -9,12 +9,12 @@ class Board extends React.Component{
         this.state = {
             currentStickyNotes: [],
             height: 0,
-            width:0,
-           
-            
+            width:0, 
         };
         this.resizeHandler = this.resizeHandler.bind(this); 
         this.hideStickyNoteHandler = this.hideStickyNoteHandler.bind(this);
+        this.onDragOver = this.onDragOver.bind(this);
+        this.onDrop = this.onDrop.bind(this);
       } 
 
     //Get the Height, Width of the element after React renders that element/window resize event
@@ -31,8 +31,6 @@ class Board extends React.Component{
     componentWillUnmount(){
         window.removeEventListener('resize', this.resizeHandler);
       }
-
-     
 
     /*--------------------------Add a StickyNote --------------------------*/
     addStickyNotes(e){
@@ -66,9 +64,8 @@ class Board extends React.Component{
                         positionY = {posY} 
                         color = "black" 
                         bgColor = {bcolor}
-                        
                         index = {index}
-                        action={this. hideStickyNoteHandler} 
+                        action={this.hideStickyNoteHandler} 
                     /> 
                 ])
         });
@@ -92,13 +89,25 @@ class Board extends React.Component{
         });        
     }
 
+    onDragOver = (event) => {
+        event.preventDefault();
+      }
+    
+    onDrop = (event ) => {
+        event.preventDefault();
+        var data = event.dataTransfer.getData("text");
+        event.target.appendChild(document.getElementById(data));
+        this.setState({
+          ...this.state,
+        })
+      }
 
     /*-----------------Render Board- with StickyNotes along with Headings --------------------*/
     render(){
         
         return(
             <div className="App">
-                <header className="App-header" onClick={(e) => this.addStickyNotes(e)} ref={ (divElement) => { this.divElement = divElement } }> 
+                <header className="App-header" onClick={(e) => this.addStickyNotes(e)} ref={(divElement) => {this.divElement = divElement}} onDrop={(event) => this.ondrop(event)} onDragOver={(event) => this.onDragOver(event)}> 
                     
                   {this.renderStickyNotes() }
                     
@@ -125,6 +134,5 @@ class Board extends React.Component{
 function generateColor () {
     return '#' +  Math.random().toString(16).substr(-6);
   }
-
 
 export default Board;

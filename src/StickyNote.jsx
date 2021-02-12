@@ -19,6 +19,8 @@ class StickyNote extends React.Component{
             showColorPicker:false,
             index:props.index,
             action: props.action,
+            completedTasks: [],
+            draggedStickyNote: {}
         };
         this.handler = this.handler.bind(this);
       } 
@@ -47,6 +49,27 @@ class StickyNote extends React.Component{
     handleDelete = () => {
         this.state.action(this.state.index);
     };
+/*
+    handlePositionChange(e){
+        alert("Hello");
+        console.log(e);
+    }
+*/
+
+onDragStart(event) {
+    event.dataTransfer.setData("text", event.target.id);
+  }
+      
+
+
+
+onDrag=(event) =>{
+        event.preventDefault();
+        this.setstate = {
+            positionX:event.nativeEvent.offsetX, 
+            positionY:event.nativeEvent.offsetY 
+        };
+      }
 
 /*-----------------Render StickyNote (with the styles and a heading) inside the Board / Delete the StickyNote--------------------*/
     render(){
@@ -58,11 +81,11 @@ class StickyNote extends React.Component{
             backgroundColor: this.state.bgColor 
        };
         return(
-            <div className = "postItpad" style={stickyNoteStyle} onClick={(e) => e.stopPropagation()}> 
+            <div className = "postItpad" style={stickyNoteStyle} onClick={(e) => e.stopPropagation()} draggable="true"  onDragStart= {(event) =>{this.onDragStart(event)}} onDrag={(event) => this.onDrag(event)}> 
                 <button className = "Add" type="button" onClick={() => this.handlePickColor()} style={{backgroundColor: this.state.bgColor}}> + </button>
                     {this.state.showColorPicker ? this.renderColorPicker() : null }
                 <button className = "Delete" type="button" onClick={() => this.handleDelete()} style={{backgroundColor: this.state.bgColor}}> x </button>      
-                <h6 className = "postHeading">Today's {this.state.text}!</h6>
+                <div ><h6 className = "postHeading">Today's {this.state.text}!</h6></div>
                 <EditText/>
             </div>
         )
