@@ -9,7 +9,6 @@ class Board extends React.Component {
             currentStickyNotes: [],
             height: 0,
             width: 0,
-            
             draggedStickyNoteIndex: null
         };
         this.resizeHandler = this.resizeHandler.bind(this);
@@ -17,7 +16,7 @@ class Board extends React.Component {
         this.onDragOver = this.onDragOver.bind(this);
         this.onDrop = this.onDrop.bind(this);
         this.whenStickyNoteDragged = this.whenStickyNoteDragged.bind(this);
-        
+        this.onChangeStickyNote = this.onChangeStickyNote.bind(this);
     }
     //Get the Height, Width of the element after React renders that element/window resize event
     resizeHandler() {
@@ -50,7 +49,6 @@ class Board extends React.Component {
         }
         let bcolor = generateColor(); //Random color generation
         let index = currentStickyNotes.length;
-        
         // New state - Adding new stickyNote to the currentStickyNotes array 
         this.setState({
             currentStickyNotes: currentStickyNotes.concat(
@@ -66,7 +64,7 @@ class Board extends React.Component {
                         text=""
                         hideAction={this.hideStickyNoteHandler}
                         dragAction={this.whenStickyNoteDragged}
-                        
+                        onChangeAction={this.onChangeStickyNote}
                     />
                 ])
         });
@@ -85,13 +83,34 @@ class Board extends React.Component {
     /*-----------------Hide Sticky Notes --------------------*/
     hideStickyNoteHandler(index) {
         const newStickyNotes = [...this.state.currentStickyNotes];
-        newStickyNotes.splice(index, 1,null);
+        newStickyNotes.splice(index, 1, null);
         this.setState({
             currentStickyNotes: newStickyNotes
         });
     }
     onDragOver = (event) => {
         event.preventDefault();
+    }
+    onChangeStickyNote(newProps) {
+        const newStickyNote =
+            <StickyNote
+                key={`${newProps.key}_1`}
+                title={newProps.title}
+                positionX={newProps.positionX}
+                positionY={newProps.positionY}
+                color={newProps.color}
+                bgColor={newProps.bgColor}
+                index={newProps.index}
+                text={newProps.text}
+                hideAction={this.hideStickyNoteHandler}
+                dragAction={this.whenStickyNoteDragged}
+                onChangeAction={this.onChangeStickyNote}
+            />
+        const newStickyNotes = [...this.state.currentStickyNotes];
+        newStickyNotes.splice(newProps.index, 1, newStickyNote);
+        this.setState({
+            currentStickyNotes: newStickyNotes
+        });
     }
     onDrop = (e) => {
         e.preventDefault();
@@ -120,6 +139,7 @@ class Board extends React.Component {
                     text={oldStickyNote.props.text}
                     hideAction={this.hideStickyNoteHandler}
                     dragAction={this.whenStickyNoteDragged}
+                    onChangeAction={this.onChangeStickyNote}
                 />
             const newStickyNotes = [...this.state.currentStickyNotes];
             newStickyNotes.splice(index, 1, newStickyNote);
@@ -128,10 +148,6 @@ class Board extends React.Component {
                 draggedStickyNoteIndex: null
             });
         }
-    }
-
-    draggedText=(text)=>{
-
     }
     /*-----------------Render Board- with StickyNotes along with Headings --------------------*/
     render() {
