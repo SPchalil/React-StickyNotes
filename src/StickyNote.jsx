@@ -14,11 +14,14 @@ class StickyNote extends React.Component{
             bgColor: props.bgColor,
             showColorPicker:false,
             index:props.index,
+            //text:props.text,
             hideAction: props.hideAction,
             dragAction: props.dragAction,
             
         };
         this.handler = this.handler.bind(this);
+        this.handleChangeText = this.handleChangeText.bind(this); 
+        
       } 
     handler(newColor) {
         this.setState({
@@ -41,24 +44,19 @@ class StickyNote extends React.Component{
     handleDelete = () => {
         this.state.hideAction(this.state.index);
     };
-/*
-    handlePositionChange(e){
-        alert("Hello");
-        console.log(e);
-    }
-*/   
+
     onDrag=(event) =>{
         event.preventDefault();
         this.state.dragAction(this.state.index);
       }
 
-      handleChangeText(event) {
-        const {text} = event.target.value; 
-        let changedText = text;
-        this.setState({
-            text: changedText
-        });
+    handleChangeText= (text) => {
+       
+        console.log({text})
+
     }
+    
+
 
     
 /*-----------------Render StickyNote (with the styles and a heading) inside the Board / Delete the StickyNote--------------------*/
@@ -96,6 +94,7 @@ class StickyNote extends React.Component{
                     Today's {this.state.title}!
                 </h6>
                 <EditText
+                    text={this.state.text}
                     onChange={this.handleChangeText}   
                 
                 />

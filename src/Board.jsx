@@ -9,6 +9,7 @@ class Board extends React.Component {
             currentStickyNotes: [],
             height: 0,
             width: 0,
+            
             draggedStickyNoteIndex: null
         };
         this.resizeHandler = this.resizeHandler.bind(this);
@@ -48,6 +49,7 @@ class Board extends React.Component {
         }
         let bcolor = generateColor(); //Random color generation
         let index = currentStickyNotes.length;
+        let text = this.state.text;
         // New state - Adding new stickyNote to the currentStickyNotes array 
         this.setState({
             currentStickyNotes: currentStickyNotes.concat(
@@ -60,6 +62,7 @@ class Board extends React.Component {
                         color="black"
                         bgColor={bcolor}
                         index={index}
+                        //text={text}
                         hideAction={this.hideStickyNoteHandler}
                         dragAction={this.whenStickyNoteDragged}
                     />
@@ -112,6 +115,7 @@ class Board extends React.Component {
                     color={oldStickyNote.props.color}
                     bgColor={oldStickyNote.props.bgColor}
                     index={oldStickyNote.props.index}
+                    //text={oldStickyNote.props.text}
                     hideAction={this.hideStickyNoteHandler}
                     dragAction={this.whenStickyNoteDragged}
                 />
