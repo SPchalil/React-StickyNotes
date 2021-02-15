@@ -14,7 +14,7 @@ class StickyNote extends React.Component{
             bgColor: props.bgColor,
             showColorPicker:false,
             index:props.index,
-            //text:props.text,
+            text:props.text,
             hideAction: props.hideAction,
             dragAction: props.dragAction,
             
@@ -52,8 +52,9 @@ class StickyNote extends React.Component{
 
     handleChangeText= (text) => {
        
-        console.log({text})
-
+        this.setState({
+            text: text
+        });
     }
     
 

@@ -102,21 +102,15 @@ import React from 'react';
 import { View, StyleSheet,TextInput} from 'react-native';
 
 class EditText extends React. Component{
-//constructor(){
- // super();
- // this.state ={
- //   text: props.text,
-//    onChange: props.onChange
- // }
-  
-//}
-/*
-handleChangeText= (text) => {
-       
-  this.setState({ text: text });
+constructor(props){
+ super(props);
+ this.state ={
+ text: props.text,
+ onChange: props.onChange
+  }
   
 }
-*/
+
 
 render(){
   return(
@@ -128,8 +122,8 @@ render(){
       keyboardType= 'default'
       style={styles.input} 
       placeholder = 'Take a note..' 
-      onChangeText={this.props.onChange}
-      defaultValue = {this.props.text}
+      onChangeText={this.state.onChange}
+      defaultValue = {this.state.text}
       
       />
     </View>
