@@ -12,7 +12,7 @@
     "react-color": "^2.19.3",
     "react-dom": "^17.0.1",
     "react-native": "0.63",
-    "react-native-web": "*",
+    "react-native-web": "^0.15.0",
     "react-scripts": "4.0.1",
     "web-vitals": "^0.2.4"
   },
