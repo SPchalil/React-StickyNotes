@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 import React from 'react';
 import { View, StyleSheet,TextInput} from 'react-native';
 
-class EditText extends React. Component{
+class EditText extends React.Component{
 constructor(props){
  super(props);
  this.state ={

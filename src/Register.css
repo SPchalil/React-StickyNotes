@@ -1,0 +1,132 @@
+.App-logo {
+    height: 15vmin;
+    pointer-events: none;
+    margin-top: 10px;
+  }
+
+  .formHeading{
+    color: #3d0808;
+    font-family: "Times New Roman", Times, serif;
+  }
+
+  .formPage{
+    background-image : url(./boardImg.jpg);
+    background-position: center;
+    background-size: cover; 
+    max-width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+  }
+
+  .formStyle{
+    display: flex;
+    flex-direction: column;
+
+    justify-content:left;
+    align-items: left;  
+    text-align: left;
+
+  }
+
+  .inputEmail{
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    border:none;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.986);
+    transition: 0.3s all;
+    font-size: 1.0em;
+    padding: 10px;
+
+  }
+  .inputEmail:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .inputName{
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    border:none;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.986);
+    transition: 0.3s all;
+    font-size: 1.0em;
+    padding: 10px;
+  }
+
+  .inputName:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .inputPassword{
+    width: 100%;
+    height: 50px;
+    border-radius: 8px;
+    border:none;
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.986);
+    transition: 0.3s all;
+    font-size: 1.0em;
+    padding: 10px;
+  }
+
+  .inputPassword:hover {
+    background-color: rgba(255, 255, 255, 0.45);
+    box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .formButtons{
+
+    display: flex;
+    flex-direction: row;
+
+    justify-content:space-around;
+    align-items: center;  
+    text-align: center;
+  }
+
+  .cancelButton{
+    
+    height: 50px;
+    border-radius: 10px;
+    border:none;
+    position: relative;
+    background-color: rgba(122, 120, 120, 0.986);
+    transition: 0.3s all;
+    font-size: 0.8em;
+    cursor: pointer;
+    padding: 10px;
+    color: aliceblue;
+  }
+
+  .cancelButton:hover {
+    background-color: rgba(78, 74, 74, 0.45);
+    box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .signInButton{
+    
+    height: 50px;
+    border-radius: 10px;
+    border:none;
+    position: relative;
+    background-color: rgba(122, 120, 120, 0.986);
+    transition: 0.3s all;
+    font-size: 0.8em;
+    cursor: pointer;
+    padding: 10px;
+    color: aliceblue;
+  }
+
+  .signInButton:hover {
+    background-color: rgba(78, 74, 74, 0.45);
+    box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
+  }

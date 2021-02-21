@@ -11,3 +11,36 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.enterButton{
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 26px;
+  margin-left: 10px;
+  cursor: pointer;
+  border-radius: 12px;
+  border-bottom-style: none;
+}
+
+.enterButton:hover {
+  background-color: #b3b3b3;
+ 
+}
+
+.App-board{
+  background-image : url(./boardImg.jpg);
+  background-position: center;
+  background-size: cover; 
+  max-width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+
+}
