@@ -27,10 +27,12 @@
     display: flex;
     flex-direction: column;
 
-    justify-content:left;
-    align-items: left;  
-    text-align: left;
+    justify-content:center;
+    align-items: center;
+    
+    width: 400px;
 
+    
   }
 
   .inputEmail{
@@ -100,20 +102,29 @@
     background-color: rgba(255, 255, 255, 0.45);
     box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
   }
-
-
+/*---------------------------------------------------*/
   .formButtons{
 
+    height: 200px;
+  }
+   
+ /*---------------------------------------------------*/   
+  
+/*
+  .navButtons{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 
-    justify-content:space-between;
+    justify-content:center;
     align-items: center;  
     text-align: center;
-  }
-
-  .cancelButton{
     
+  }
+*/
+/*
+  .cancelButton{
+    display: inline-block;
+    text-align: center;
     height: 50px;
     border-radius: 10px;
     border:none;
@@ -131,13 +142,14 @@
     box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
   }
 
-  .signInButton{
-    
+  .signUpButton{
+    display: inline-block;
+    text-align: center;
     height: 50px;
     border-radius: 10px;
     border:none;
     position: relative;
-    background-color: rgba(10, 8, 138, 0.986);
+    background-color: rgba(117, 114, 247, 0.986);
     transition: 0.3s all;
     font-size: 0.8em;
     cursor: pointer;
@@ -145,23 +157,27 @@
     color: aliceblue;
   }
 
-  .signInButton:hover {
+  .signUpButton:hover {
     background-color: rgba(78, 74, 74, 0.45);
     box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
   }
-
+  
+*/
+/*----------------------Home Page-----------------------------*/
   .logInButton{
     height: 50px;
-    width: 50%;
+    width: 200px;
     border-radius: 10px;
     border:none;
     position: relative;
     background-color: rgba(23, 165, 248, 0.986);
     transition: 0.3s all;
-    font-size: 0.8em;
+    font-size: 1em;
     cursor: pointer;
     padding: 10px;
     color: aliceblue;
+    
+  
 
   }
   .logInButton:hover {
@@ -171,13 +187,13 @@
 
   .createNewButton{
     height: 55px;
-    width: 100%;
+    width: 200px;
     border-radius: 10px;
     border:none;
     position: relative;
-    background-color: rgba(123, 253, 177, 0.986);
+    background-color: rgba(23, 248, 117, 0.986);
     transition: 0.3s all;
-    font-size: 0.8em;
+    font-size: 0.7em;
     cursor: pointer;
     padding: 10px;
     color: aliceblue;
@@ -187,3 +203,106 @@
     background-color: rgba(78, 74, 74, 0.45);
     box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
   }
+/*----------------------LogIn Page-----------------------------*/
+  .logInEnterButton{
+    display: inline-block;
+    text-align: center;
+  
+    height: 50px;
+    width: 100px;
+    margin:20px;
+    border-radius: 10px;
+    border:none;
+    position: relative;
+    background-color: rgba(23, 165, 248, 0.986);
+    transition: 0.3s all;
+    font-size: 0.8em;
+    cursor: pointer;
+    padding: 10px;
+   
+    color: aliceblue;
+  }
+  .logInEnterButton:hover {
+    background-color: rgba(78, 74, 74, 0.45);
+    box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .logInCancelButton{
+    display: inline-block;
+    text-align: center;
+    
+    height: 50px;
+    width: 100px;
+    margin:20px;
+    border-radius: 10px;
+    border:none;
+    position: relative;
+    background-color: rgba(245, 233, 72, 0.986);
+    transition: 0.3s all;
+    font-size: 0.8em;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: 10px;
+    color: aliceblue;
+  }
+  .logInCancelButton:hover {
+    background-color: rgba(78, 74, 74, 0.45);
+    box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
+  }
+/*--------------------Register Page-------------------------------*/
+  .signUpButton{
+    display: inline-block;
+    text-align: center;
+    height: 50px;
+    width: 100px;
+    margin:20px;
+    border-radius: 10px;
+    border:none;
+    position: relative;
+    background-color: rgba(23, 165, 248, 0.986);
+    transition: 0.3s all;
+    font-size: 0.8em;
+    cursor: pointer;
+    
+    color: aliceblue;
+  }
+
+  .signUpButton:hover {
+    background-color: rgba(78, 74, 74, 0.45);
+    box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
+  }
+
+  .cancelButton{
+    display: inline-block;
+    text-align: center;
+    height: 50px;
+    width: 100px;
+    margin:20px;
+    border-radius: 10px;
+    border:none;
+    position: relative;
+    background-color: rgba(245, 233, 72, 0.986);
+    transition: 0.3s all;
+    font-size: 0.8em;
+    cursor: pointer;
+    
+    color: aliceblue;
+  }
+
+  .cancelButton:hover {
+    background-color: rgba(78, 74, 74, 0.45);
+    box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
+  }
+/*
+  .regButtons{
+    align-items: center;
+    height: 100px;
+    width:  300px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+    
+  }
+*/

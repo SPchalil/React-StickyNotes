@@ -2,15 +2,18 @@ import React from 'react';
 import logIn2 from './logIn2.png';
 //import './StickyNotesApp.css';
 import './Register.css';
+import { Route, Link, Switch } from 'react-router-dom';
 
 class Register extends React.Component {
     constructor(props) {
       super(props);
       this.state = {
         username: '',
-        age: null,
+        
       };
     }
+    /*
+    onSubmit={this.mySubmitHandler}>
     mySubmitHandler = (event) => {
       event.preventDefault();
       let age = this.state.age;
@@ -23,21 +26,22 @@ class Register extends React.Component {
       let val = event.target.value;
       this.setState({[nam]: val});
     }
+    */
     render() {
       return (
         <div className = "formPage">
             <img src={logIn2} className="logIn-logo" alt="logIn" />
             <h2 className = "formHeading">Registration </h2>
             <form 
-                className = "formStyle"
-                onSubmit={this.mySubmitHandler}>
+                className = "formStyle" >
+                
         
                 <input
                     className = "inputEmail"
                     type='text'
                     name='email'
                     placeholder='Email address'
-                    onChange={this.myChangeHandler}
+                    onChange={this.handleChange}
                     required
                 />
             <br/>
@@ -46,7 +50,7 @@ class Register extends React.Component {
                     type='text'
                     name='username'
                     placeholder='Username'
-                    onChange={this.myChangeHandler}
+                    onChange={this.handleChange}
                     required
                 />
             <br/>
@@ -55,7 +59,7 @@ class Register extends React.Component {
                     type='password'
                     name='password'
                     placeholder='Password'
-                    onChange={this.myChangeHandler}
+                    onChange={this.handleChange}
                     required
                 />
             <br/>
@@ -64,20 +68,29 @@ class Register extends React.Component {
                     type='password'
                     name='confirmpassword'
                     placeholder='Confirm Password'
-                    onChange={this.myChangeHandler}
+                    onChange={this.handleChange}
                     required
                 />
 
+           
             <br/>
-            <br/>
-                <div className="formButtons">
-                    <button className = "cancelButton" type='cancel' > Cancel </button>
-                    <button className = "signInButton" type='signIn' > Sign Up </button> 
+                <div className="regButtons">
+                    <nav>
+
+                            <button className = "cancelButton" ><Link style={{ textDecoration: 'none' }} to="/home">Cancel</Link></button>
+                            <button className = "signUpButton" ><Link style={{ textDecoration: 'none', color: '#FFF'  }} to="/registered">Sign Up</Link></button>
+                        
+                    </nav>
+                    
                 </div>
             </form>
         </div>
       );
     }
   }
+  /*
+  <button className = "cancelButton" type='cancel' > Cancel </button>
+                    <button className = "signInButton" type='signIn' > Sign Up </button> 
+*/
 
   export default Register;
