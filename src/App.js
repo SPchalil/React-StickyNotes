@@ -2,7 +2,9 @@ import React from 'react';
 import { Route, Link, Switch } from 'react-router-dom';
 
 import postit from './postit.png';
-import Register from "./Register";
+import LogIn from "./LogIn";
+//import Register from "./Register";
+
 import './StickyNotesApp.css';
 //import Home from "./Home";
 
@@ -22,14 +24,15 @@ import './StickyNotesApp.css';
                         <h2 className="name"> .. by Swapna
                             <a className="link" href="https://github.com/SPchalil/React-StickyNotes"> github </a>
                         </h2>
-                        <div><h4>New User? Please Register </h4></div>
+                        
                     </div>
                     
                     <div className = "enterButtonsContainer">
                         <nav>
                             <ul>
                                 
-                                <button className = "enterButton"><Link style={{ textDecoration: 'none' }} to="/register">Register</Link></button>
+                                <button className = "enterButton"><Link style={{ textDecoration: 'none' }} to="/login">Log In</Link></button>
+                                
                     
                             </ul>
                         </nav>
@@ -38,14 +41,25 @@ import './StickyNotesApp.css';
             </div>
             
             <Switch>
-                
-                <Route path="/register">
-                    <Register />
+                <Route path="/login">
+                    <LogIn />
                 </Route>
+                
+                
+                
                 
             </Switch>
         </div>
     );
 }
+//<button className = "enterButton" ><Link style={{ textDecoration: 'none' }} to="/">Home</Link></button>
+//<button className = "enterButton"><Link style={{ textDecoration: 'none' }} to="/register">Create New Account</Link></button>
+/*<Route path="/">
+                    <Home />
+                </Route>
 
+<Route path="/register">
+                    <Register />
+                </Route>
+*/
 export default App;

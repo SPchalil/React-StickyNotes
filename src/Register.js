@@ -1,5 +1,5 @@
 import React from 'react';
-import postit from './postit.png';
+import logIn2 from './logIn2.png';
 //import './StickyNotesApp.css';
 import './Register.css';
 
@@ -26,8 +26,8 @@ class Register extends React.Component {
     render() {
       return (
         <div className = "formPage">
-            <img src={postit} className="App-logo" alt="postit" />
-            <h2 className = "formHeading">Registration {this.state.username} {this.state.age}</h2>
+            <img src={logIn2} className="logIn-logo" alt="logIn" />
+            <h2 className = "formHeading">Registration </h2>
             <form 
                 className = "formStyle"
                 onSubmit={this.mySubmitHandler}>
@@ -52,9 +52,18 @@ class Register extends React.Component {
             <br/>
                 <input
                     className = "inputPassword"
-                    type='text'
+                    type='password'
                     name='password'
                     placeholder='Password'
+                    onChange={this.myChangeHandler}
+                    required
+                />
+            <br/>
+                <input
+                    className = "confirmPassword"
+                    type='password'
+                    name='confirmpassword'
+                    placeholder='Confirm Password'
                     onChange={this.myChangeHandler}
                     required
                 />
@@ -63,7 +72,7 @@ class Register extends React.Component {
             <br/>
                 <div className="formButtons">
                     <button className = "cancelButton" type='cancel' > Cancel </button>
-                    <button className = "signInButton" type='signIn' > Sign In </button> 
+                    <button className = "signInButton" type='signIn' > Sign Up </button> 
                 </div>
             </form>
         </div>
