@@ -26,13 +26,9 @@
   .formStyle{
     display: flex;
     flex-direction: column;
-
     justify-content:center;
     align-items: center;
-    
     width: 400px;
-
-    
   }
 
   .inputEmail{
@@ -108,61 +104,7 @@
     height: 200px;
   }
    
- /*---------------------------------------------------*/   
-  
-/*
-  .navButtons{
-    display: flex;
-    flex-direction: row;
-
-    justify-content:center;
-    align-items: center;  
-    text-align: center;
-    
-  }
-*/
-/*
-  .cancelButton{
-    display: inline-block;
-    text-align: center;
-    height: 50px;
-    border-radius: 10px;
-    border:none;
-    position: relative;
-    background-color: rgba(122, 120, 120, 0.986);
-    transition: 0.3s all;
-    font-size: 0.8em;
-    cursor: pointer;
-    padding: 10px;
-    color: aliceblue;
-  }
-
-  .cancelButton:hover {
-    background-color: rgba(78, 74, 74, 0.45);
-    box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
-  }
-
-  .signUpButton{
-    display: inline-block;
-    text-align: center;
-    height: 50px;
-    border-radius: 10px;
-    border:none;
-    position: relative;
-    background-color: rgba(117, 114, 247, 0.986);
-    transition: 0.3s all;
-    font-size: 0.8em;
-    cursor: pointer;
-    padding: 10px;
-    color: aliceblue;
-  }
-
-  .signUpButton:hover {
-    background-color: rgba(78, 74, 74, 0.45);
-    box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
-  }
-  
-*/
+ 
 /*----------------------Home Page-----------------------------*/
   .logInButton{
     height: 50px;
@@ -176,10 +118,6 @@
     cursor: pointer;
     padding: 10px;
     color: aliceblue;
-  
-    
-  
-
   }
   .logInButton:hover {
     background-color: rgba(78, 74, 74, 0.45);
@@ -208,7 +146,6 @@
   .logInEnterButton{
     display: inline-block;
     text-align: center;
-  
     height: 50px;
     width: 100px;
     margin:20px;
@@ -220,7 +157,6 @@
     font-size: 0.8em;
     cursor: pointer;
     padding: 10px;
-   
     color: aliceblue;
   }
   .logInEnterButton:hover {
@@ -231,7 +167,6 @@
   .logInCancelButton{
     display: inline-block;
     text-align: center;
-    
     height: 50px;
     width: 100px;
     margin:20px;
@@ -270,7 +205,6 @@
     transition: 0.3s all;
     font-size: 0.8em;
     cursor: pointer;
-    
     color: aliceblue;
   }
 
@@ -292,7 +226,6 @@
     transition: 0.3s all;
     font-size: 0.8em;
     cursor: pointer;
-    
     color: aliceblue;
   }
 
@@ -300,19 +233,6 @@
     background-color: rgba(78, 74, 74, 0.45);
     box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
   }
-/*
-  .regButtons{
-    align-items: center;
-    height: 100px;
-    width:  300px;
-    display:flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-    
-  }
-*/
 
 .error{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;

@@ -20,32 +20,25 @@ class Register extends React.Component {
             }
 
         };
-        
+
     }
     validEmailRegex =
         RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 
     validateForm = (errors) => {
         let valid = true;
-        /*
-        Object.values(errors).forEach(
-            // if we have an error string set valid to false
-            (val) => val.length > 0 && (valid = false)
-        );
-        */
+
         Object.values(errors).forEach((val) => {
             if (val.length > 0) {
-               valid = false;
+                valid = false;
             }
-          });
+        });
         return valid;
     }
 
     handleChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
-        //let name = event.target.name;
-        //let value = event.target.value;
         let errors = this.state.errors;
         switch (name) {
             case 'username':
@@ -72,22 +65,19 @@ class Register extends React.Component {
             default:
                 break;
         }
-
-
         this.setState({ errors, [name]: value });
     }
 
     handleSubmit = (event) => {
         event.preventDefault();
-        
         if (this.validateForm(this.state.errors)) {
             console.info('Valid Form')
         } else {
             alert('Invalid Form')
             this.props.history.push("/register");
             this.setState({
-                password:"",
-                confirmpassword:"",
+                password: "",
+                confirmpassword: "",
             });
         }
     }
@@ -112,8 +102,7 @@ class Register extends React.Component {
                             required
                             noValidate
                         />
-
-                        {errors.email.length > 0 && 
+                        {errors.email.length > 0 &&
                             <span className='error'>{errors.email}</span>}
                     </div>
                     <br />
@@ -164,15 +153,12 @@ class Register extends React.Component {
                         />
                         {errors.confirmpassword.length > 0 &&
                             <span className='error'>{errors.confirmpassword}</span>}
-
                     </div>
                     <br />
                     <div className="regButtons">
                         <nav>
-
                             <button className="cancelButton" ><Link style={{ textDecoration: 'none' }} to="/home">Cancel</Link></button>
-                            <button className="signUpButton" type="submit" onClick = {this.handleSubmit}><Link style={{ textDecoration: 'none', color: '#FFF' }} to="/registered">Sign Up</Link></button>
-
+                            <button className="signUpButton" type="submit" onClick={this.handleSubmit}><Link style={{ textDecoration: 'none', color: '#FFF' }} to="/registered">Sign Up</Link></button>
                         </nav>
 
                     </div>
@@ -181,6 +167,5 @@ class Register extends React.Component {
         );
     }
 }
-
 
 export default withRouter(Register);
