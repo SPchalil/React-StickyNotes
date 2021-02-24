@@ -2,95 +2,198 @@ import React from 'react';
 import logIn2 from './logIn2.png';
 //import './StickyNotesApp.css';
 import './Register.css';
-import { Route, Link, Switch } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
+/*
+const validEmailRegex =
+    RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 
+const validateForm = (errors) => {
+    let valid = true;
+    Object.values(errors).forEach(
+        // if we have an error string set valid to false
+        (val) => val.length > 0 && (valid = false)
+    );
+    return valid;
+}
+*/
 class Register extends React.Component {
     constructor(props) {
-      super(props);
-      this.state = {
-        username: '',
+        super(props);
+        this.state = {
+            username: null,
+            email: null,
+            password: null,
+            confirmpassword: null,
+            errors: {
+                username: '',
+                email: '',
+                password: '',
+                confirmpassword: '',
+            }
+
+        };
         
-      };
     }
-    /*
-    onSubmit={this.mySubmitHandler}>
-    mySubmitHandler = (event) => {
-      event.preventDefault();
-      let age = this.state.age;
-      if (!Number(age)) {
-        alert("Your age must be a number");
-      }
+    validEmailRegex =
+        RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
+
+    validateForm = (errors) => {
+        let valid = true;
+        /*
+        Object.values(errors).forEach(
+            // if we have an error string set valid to false
+            (val) => val.length > 0 && (valid = false)
+        );
+        */
+        Object.values(errors).forEach((val) => {
+            if (val.length > 0) {
+               valid = false;
+            }
+          });
+        return valid;
     }
-    myChangeHandler = (event) => {
-      let nam = event.target.name;
-      let val = event.target.value;
-      this.setState({[nam]: val});
+
+    handleChange = (event) => {
+        event.preventDefault();
+        const { name, value } = event.target;
+        //let name = event.target.name;
+        //let value = event.target.value;
+        let errors = this.state.errors;
+        switch (name) {
+            case 'username':
+                errors.username =
+                    value.length < 5
+                        ? '* User Name must be 5 characters long!'
+                        : '';
+                break;
+            case 'email':
+                errors.email =
+                    this.validEmailRegex.test(value)
+                        ? ''
+                        : '* Email is not valid!';
+                break;
+            case 'password':
+                errors.password =
+                    value.length < 8
+                        ? '* Password must be 8 characters long!'
+                        : '';
+                break;
+            case 'confirmpassword':
+                errors.confirmpassword = value !== this.state.password ? 'Should match the password' : '';
+                break;
+            default:
+                break;
+        }
+
+
+        this.setState({ errors, [name]: value });
     }
-    */
+
+    handleSubmit = (event) => {
+        event.preventDefault();
+        
+        if (this.validateForm(this.state.errors)) {
+            console.info('Valid Form')
+        } else {
+            alert('Invalid Form')
+            this.props.history.push("/register");
+            this.setState({
+                password:"",
+                confirmpassword:"",
+            });
+        }
+    }
+
     render() {
-      return (
-        <div className = "formPage">
-            <img src={logIn2} className="logIn-logo" alt="logIn" />
-            <h2 className = "formHeading">Registration </h2>
-            <form 
-                className = "formStyle" >
-                
-        
-                <input
-                    className = "inputEmail"
-                    type='text'
-                    name='email'
-                    placeholder='Email address'
-                    onChange={this.handleChange}
-                    required
-                />
-            <br/>
-                <input
-                    className = "inputName"
-                    type='text'
-                    name='username'
-                    placeholder='Username'
-                    onChange={this.handleChange}
-                    required
-                />
-            <br/>
-                <input
-                    className = "inputPassword"
-                    type='password'
-                    name='password'
-                    placeholder='Password'
-                    onChange={this.handleChange}
-                    required
-                />
-            <br/>
-                <input
-                    className = "confirmPassword"
-                    type='password'
-                    name='confirmpassword'
-                    placeholder='Confirm Password'
-                    onChange={this.handleChange}
-                    required
-                />
+        const { errors } = this.state;
+        return (
+            <div className="formPage">
+                <img src={logIn2} className="logIn-logo" alt="logIn" />
+                <h2 className="formHeading">Registration </h2>
+                <form
+                    className="formStyle" onSubmit={this.handleSubmit} noValidate>
 
-           
-            <br/>
-                <div className="regButtons">
-                    <nav>
+                    <div className="email">
+                        <input
+                            className="inputEmail"
+                            type='email'
+                            name='email'
+                            placeholder='Email address'
+                            value={this.state.email}
+                            onChange={this.handleChange}
+                            required
+                            noValidate
+                        />
 
-                            <button className = "cancelButton" ><Link style={{ textDecoration: 'none' }} to="/home">Cancel</Link></button>
-                            <button className = "signUpButton" ><Link style={{ textDecoration: 'none', color: '#FFF'  }} to="/registered">Sign Up</Link></button>
-                        
-                    </nav>
-                    
-                </div>
-            </form>
-        </div>
-      );
+                        {errors.email.length > 0 && 
+                            <span className='error'>{errors.email}</span>}
+                    </div>
+                    <br />
+                    <div className="username">
+                        <input
+                            className="inputName"
+                            type='text'
+                            name='username'
+                            placeholder='Username'
+                            value={this.state.username}
+                            onChange={this.handleChange}
+                            required
+                            noValidate
+                        />
+                        {errors.username.length > 0 &&
+                            <span className='error'>{errors.username}</span>}
+                    </div>
+
+                    <br />
+                    <div className="password">
+                        <input
+                            className="inputPassword"
+                            type='password'
+                            name='password'
+                            placeholder='Password'
+                            value={this.state.password}
+                            onChange={this.handleChange}
+                            required
+                            noValidate
+                        />
+                        {errors.password.length > 0 &&
+                            <span className='error'>{errors.password}</span>}
+                    </div>
+                    <div className='info'>
+                        <small>*Password must be eight characters in length.</small>
+                    </div>
+                    <br />
+                    <div className="confirmpassword">
+                        <input
+                            className="confirmPassword"
+                            type='password'
+                            name='confirmpassword'
+                            placeholder='Confirm Password'
+                            value={this.state.confirmpassword}
+                            onChange={this.handleChange}
+                            required
+                            noValidate
+                        />
+                        {errors.confirmpassword.length > 0 &&
+                            <span className='error'>{errors.confirmpassword}</span>}
+
+                    </div>
+                    <br />
+                    <div className="regButtons">
+                        <nav>
+
+                            <button className="cancelButton" ><Link style={{ textDecoration: 'none' }} to="/home">Cancel</Link></button>
+                            <button className="signUpButton" type="submit" onClick = {this.handleSubmit}><Link style={{ textDecoration: 'none', color: '#FFF' }} to="/registered">Sign Up</Link></button>
+
+                        </nav>
+
+                    </div>
+                </form>
+            </div>
+        );
     }
-  }
-  /*
-  <button className = "cancelButton" type='cancel' > Cancel </button>
-                    <button className = "signInButton" type='signIn' > Sign Up </button> 
-*/
+}
 
-  export default Register;
+
+export default withRouter(Register);

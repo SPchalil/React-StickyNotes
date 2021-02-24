@@ -36,7 +36,7 @@
   }
 
   .inputEmail{
-    width: 100%;
+    width: 450px;
     height: 50px;
     border-radius: 8px;
     border:none;
@@ -53,7 +53,7 @@
   }
 
   .inputName{
-    width: 100%;
+    width: 450px;
     height: 50px;
     border-radius: 8px;
     border:none;
@@ -70,7 +70,7 @@
   }
 
   .inputPassword{
-    width: 100%;
+    width: 450px;
     height: 50px;
     border-radius: 8px;
     border:none;
@@ -87,7 +87,7 @@
   }
 
   .confirmPassword{
-    width: 100%;
+    width: 450px;
     height: 50px;
     border-radius: 8px;
     border:none;
@@ -176,6 +176,7 @@
     cursor: pointer;
     padding: 10px;
     color: aliceblue;
+  
     
   
 
@@ -250,6 +251,12 @@
     box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
   }
 /*--------------------Register Page-------------------------------*/
+.info{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 23px;
+    font-weight:bold;
+    color:white;
+}
   .signUpButton{
     display: inline-block;
     text-align: center;
@@ -306,3 +313,10 @@
     
   }
 */
+
+.error{
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-size: 23px;
+    font-weight:bold;
+    color:rgb(51, 34, 3);
+}
