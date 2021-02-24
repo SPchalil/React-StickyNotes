@@ -1,22 +1,9 @@
 import React from 'react';
-import logIn2 from './logIn2.png';
-//import './StickyNotesApp.css';
+import logIn2 from './logIn2.png'
 import './Register.css';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-/*
-const validEmailRegex =
-    RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
 
-const validateForm = (errors) => {
-    let valid = true;
-    Object.values(errors).forEach(
-        // if we have an error string set valid to false
-        (val) => val.length > 0 && (valid = false)
-    );
-    return valid;
-}
-*/
 class Register extends React.Component {
     constructor(props) {
         super(props);

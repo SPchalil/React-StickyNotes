@@ -10,6 +10,7 @@ import Home from "./Home";
 import StickyNotesApp from './StickyNotesApp'; 
 import Register from './Register';
 import Thanks from './Thanks';
+import Logout from './Logout';
 
 
 
@@ -26,7 +27,7 @@ import Thanks from './Thanks';
                     <LogIn />
                 </Route>
                
-                <Route path="/stickynotesapp">
+                <Route path="/stickynotesapp/:userId">
                     <StickyNotesApp />
                 </Route>
                 <Route path="/register">
@@ -34,6 +35,9 @@ import Thanks from './Thanks';
                 </Route>
                 <Route path="/registered">
                     <Thanks />
+                </Route>
+                <Route path="/logout">
+                    <Logout />
                 </Route>
                 <Route path="/">
                     <Home />

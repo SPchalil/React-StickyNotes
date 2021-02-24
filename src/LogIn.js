@@ -70,6 +70,8 @@ class LogIn extends React.Component {
         
         if (this.validateForm(this.state.errors)) {
             console.info('Valid Form')
+           
+            
         } else {
             alert('Invalid Form')
             this.props.history.push("/login");
@@ -80,6 +82,7 @@ class LogIn extends React.Component {
     }
     render() {
         const { errors } = this.state;
+        
         return (
             <div className="formPage">
                 <img src={logIn} className="logIn-logo" alt="logIn" />
@@ -123,7 +126,7 @@ class LogIn extends React.Component {
                         <nav>
 
                             <button className="logInCancelButton" ><Link style={{ textDecoration: 'none' }} to="/home">Cancel</Link></button>
-                            <button className="logInEnterButton" type="submit" onClick={this.handleSubmit}><Link style={{ textDecoration: 'none', color: '#FFF' }} to="/stickynotesapp">Enter</Link></button>
+                            <button className="logInEnterButton" type="submit" onClick={this.handleSubmit}><Link style={{ textDecoration: 'none', color: '#FFF' }} to="/stickynotesapp/Esteban">Enter</Link></button>
 
 
 

@@ -98,5 +98,61 @@
   left:-225px; 
 }
 
+.esteban{
+  text-align: center;
+  font-size: 33px;
+  background-color: rgb(68, 5, 5);
+  color: #f7f7f4;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  height: 50px;
+  
+  
+}
+.logOutButton{
+    
+  text-align: center;
+  height: 30px;
+  width: 100px;
+  margin:20px;
+  border-radius: 10px;
+  border:none;
+  position: absolute;
+  top: 1px;
+  right: 20px;
+  background-color: rgba(11, 213, 248, 0.986);
+  background-image: linear-gradient(to right, rgb(18, 209, 243) , yellow);
+  transition: 0.3s all;
+  font-size: 1.2em;
+  cursor: pointer;
+  margin-top:9px;
+  
+  color: rgb(255, 255, 255);
+}
+.logOutButton:hover {
+  background-color: rgba(78, 74, 74, 0.45);
+  box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
+}
+
+.homeButton{
+  height: 50px;
+    width: 200px;
+    border-radius: 10px;
+    border:none;
+    position: relative;
+    background-color: rgba(8, 245, 174, 0.986);
+    transition: 0.3s all;
+    font-size: 1em;
+    cursor: pointer;
+    padding: 10px;
+    color: aliceblue;
+    margin-left: 20px;
+}
+.homeButton:hover {
+  background-color: rgba(78, 74, 74, 0.45);
+  box-shadow: 10px 10px 20px 20px rgba(0, 0, 0, 0.05);
+}
+
+
 
 
