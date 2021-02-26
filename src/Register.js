@@ -3,7 +3,6 @@ import logIn2 from './logIn2.png'
 import './Register.css';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
-
 class Register extends React.Component {
     constructor(props) {
         super(props);
@@ -18,24 +17,19 @@ class Register extends React.Component {
                 password: 'Required Field',
                 confirmpassword: 'Required Field',
             }
-
         };
-
     }
     validEmailRegex =
-        RegExp(/^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i);
-
+        RegExp(/^(([^<>()[\].,;:\s@"]+(.[^<>()[\].,;:\s@"]+)*)|(".+"))@(([^<>()[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i);
     validateForm = (errors) => {
-        let valid = true;
-
-        Object.values(errors).forEach((val) => {
-            if (val.length > 0) {
-                valid = false;
+        let errorConcat = '';
+        Object.entries(errors).forEach((obj) => {
+            if (obj[1].length > 0) {
+                errorConcat = `${errorConcat}\n${obj[0]}: ${obj[1]}`;
             }
         });
-        return valid;
+        return errorConcat;
     }
-
     handleChange = (event) => {
         event.preventDefault();
         const { name, value } = event.target;
@@ -44,44 +38,38 @@ class Register extends React.Component {
             case 'username':
                 errors.username =
                     value.length < 5
-                        ? '* User Name must be 5 characters long!'
+                        ? 'must be 5 characters long!'
                         : '';
                 break;
             case 'email':
                 errors.email =
                     this.validEmailRegex.test(value)
                         ? ''
-                        : '* Email is not valid!';
+                        : 'Not valid!';
                 break;
             case 'password':
                 errors.password =
                     value.length < 8
-                        ? '* Password must be 8 characters long!'
+                        ? 'Must be 8 characters long!'
                         : '';
                 break;
             case 'confirmpassword':
-                errors.confirmpassword = value !== this.state.password ? 'Should match the password' : '';
+                errors.confirmpassword = value !== this.state.password ? 'Should match password' : '';
                 break;
             default:
                 break;
         }
         this.setState({ errors, [name]: value });
     }
-
     handleSubmit = (event) => {
         event.preventDefault();
-        if (this.validateForm(this.state.errors)) {
-            console.info('Valid Form')
+        const errors = this.validateForm(this.state.errors);
+        if (!errors) {
+            this.props.history.push("/registered");
         } else {
-            alert('Invalid Form')
-            this.props.history.push("/register");
-            this.setState({
-                password: "",
-                confirmpassword: "",
-            });
+            alert(errors);
         }
     }
-
     render() {
         const { errors } = this.state;
         return (
@@ -90,7 +78,6 @@ class Register extends React.Component {
                 <h2 className="formHeading">Registration </h2>
                 <form
                     className="formStyle" onSubmit={this.handleSubmit} noValidate>
-
                     <div className="email">
                         <input
                             className="inputEmail"
@@ -120,7 +107,6 @@ class Register extends React.Component {
                         {errors.username.length > 0 &&
                             <span className='error'>{errors.username}</span>}
                     </div>
-
                     <br />
                     <div className="password">
                         <input
@@ -135,9 +121,6 @@ class Register extends React.Component {
                         />
                         {errors.password.length > 0 &&
                             <span className='error'>{errors.password}</span>}
-                    </div>
-                    <div className='info'>
-                        <small>*Password must be eight characters in length.</small>
                     </div>
                     <br />
                     <div className="confirmpassword">
@@ -158,14 +141,12 @@ class Register extends React.Component {
                     <div className="regButtons">
                         <nav>
                             <button className="cancelButton" ><Link style={{ textDecoration: 'none' }} to="/home">Cancel</Link></button>
-                            <button className="signUpButton" type="submit" onClick={this.handleSubmit}><Link style={{ textDecoration: 'none', color: '#FFF' }} to="/registered">Sign Up</Link></button>
+                            <button className="signUpButton" type="submit" onClick={this.handleSubmit}>Sign Up</button>
                         </nav>
-
                     </div>
                 </form>
             </div>
         );
     }
 }
-
 export default withRouter(Register);
