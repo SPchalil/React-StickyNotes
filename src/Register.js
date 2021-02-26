@@ -13,10 +13,10 @@ class Register extends React.Component {
             password: '',
             confirmpassword: '',
             errors: {
-                username: '',
-                email: '',
-                password: '',
-                confirmpassword: '',
+                username: 'Required Field',
+                email: 'Required Field',
+                password: 'Required Field',
+                confirmpassword: 'Required Field',
             }
 
         };

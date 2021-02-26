@@ -1,6 +1,8 @@
 import React from "react";
 import postit from './postit.png';
 import StickyNote from "./StickyNote.jsx";
+import './StickyNotesApp.css';
+
 //****--------------------------Board  Class Component ------------------------****//
 class Board extends React.Component {
     constructor(props) {
@@ -149,8 +151,10 @@ class Board extends React.Component {
             });
         }
     }
+    
     /*-----------------Render Board- with StickyNotes along with Headings --------------------*/
     render() {
+        
         return (
             <div className="App">
                 <header
@@ -160,6 +164,7 @@ class Board extends React.Component {
                     onDrop={(event) => this.onDrop(event)}
                     onDragOver={(event) => this.onDragOver(event)}>
                     {this.renderStickyNotes()}
+                    
                     <img src={postit} className="App-logo" alt="postit" />
                     <div className="heading"> <h1>Sticky Notes</h1> </div>
                     <div className="ref">

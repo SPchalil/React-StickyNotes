@@ -12,8 +12,8 @@ class LogIn extends React.Component {
             email: '',
             password: '',
             errors: {
-                email: '',
-                password: '',
+                email: 'Required Field',
+                password: 'Required Field',
             }
         };
     }

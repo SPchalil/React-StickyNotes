@@ -8,6 +8,7 @@ import StickyNotesApp from './StickyNotesApp';
 import Register from './Register';
 import Thanks from './Thanks';
 import Logout from './Logout';
+//import Board from './Board';
 
 function App() {
     return (
@@ -28,6 +29,7 @@ function App() {
                 <Route path="/logout">
                     <Logout />
                 </Route>
+                
                 <Route path="/">
                     <Home />
                 </Route>
