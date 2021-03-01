@@ -2,7 +2,7 @@
 
 StickyNotes project is an application developed in React. It allows users to have a virtual sticky notes board. Your virtual board should be accessible from any device anywhere at any time when you have an internet connection. It allows users to take notes by signing up.
 
-It is a major project undertaken on my path towards learning and understanding the front-end software development using the React.
+It is a major project undertaken on my path towards learning and understanding the front-end web development using the React. It makes use of react router Dom, react-native framework, and react-color.  
 
 This app requires Node Package Manager (npm) to run. You can clone the repo and follow the directions below to run an offline version of this app on your local machine.
 
