@@ -3,12 +3,21 @@ import postit from './postit.png';
 import StickyNote from "./StickyNote.jsx";
 import './StickyNotesApp.css';
 
+import axios from 'axios';
+
 //****--------------------------Board  Class Component ------------------------****//
+
+const api = axios.create({
+    baseURL: 'http://localhost:3000/notes'
+})
+
 class Board extends React.Component {
     constructor(props) {
         super(props);
+
         this.state = {
             currentStickyNotes: [],
+            
             height: 0,
             width: 0,
             draggedStickyNoteIndex: null
@@ -19,7 +28,47 @@ class Board extends React.Component {
         this.onDrop = this.onDrop.bind(this);
         this.whenStickyNoteDragged = this.whenStickyNoteDragged.bind(this);
         this.onChangeStickyNote = this.onChangeStickyNote.bind(this);
+/*
+        api.get('/').then(res => {
+            
+            //console.log(res.data)
+            const apiStickyNote = res.data;
+            //console.log(apiStickyNote)
+            //const fakeStickyNotes =apiStickyNotes ;
+                const fakekey = apiStickyNote[0].key;
+                const faketitle = apiStickyNote[0].title;
+                const fakeposX = apiStickyNote[0].positionX;
+                const fakeposY = apiStickyNote[0].positionY;
+                const fakecolor = apiStickyNote[0].color;
+                const fakebgColor = apiStickyNote[0].bgColor;
+                const faketext = apiStickyNote[0].text;
+
+               const fakeStickyNote =
+                    <StickyNote
+                        key={fakekey}
+                        title={faketitle}
+                        positionX={fakeposX}
+                        positionY={fakeposY}
+                        color={fakecolor}
+                        bgColor={fakebgColor}
+                        index="0"
+                        text={faketext}
+                        
+                    />
+                
+                this.setState({
+                    currentStickyNotes: fakeStickyNote
+
+                });
+                
+        })
+        */
     }
+    
+    
+    //fakeStickyNotes:[],
+    //this.setState({ fakeStickyNotes: res.data })
+    
     //Get the Height, Width of the element after React renders that element/window resize event
     resizeHandler() {
         const width = this.divElement.clientWidth;
@@ -36,6 +85,7 @@ class Board extends React.Component {
     /*--------------------------Add a StickyNote --------------------------*/
     addStickyNotes(e) {
         const currentStickyNotes = this.state.currentStickyNotes;
+        console.log(currentStickyNotes);
         const Xmax = this.state.width - 200;
         const Ymax = this.state.height - 200;
         console.log(e);
@@ -51,6 +101,8 @@ class Board extends React.Component {
         }
         let bcolor = generateColor(); //Random color generation
         let index = currentStickyNotes.length;
+
+        
         // New state - Adding new stickyNote to the currentStickyNotes array 
         this.setState({
             currentStickyNotes: currentStickyNotes.concat(
@@ -68,9 +120,14 @@ class Board extends React.Component {
                         dragAction={this.whenStickyNoteDragged}
                         onChangeAction={this.onChangeStickyNote}
                     />
-                ])
+                ]
+                
+                
+                )
         });
     }
+
+
     whenStickyNoteDragged(index) {
         this.setState({
             draggedStickyNoteIndex: index
@@ -153,6 +210,7 @@ class Board extends React.Component {
     }
     
     /*-----------------Render Board- with StickyNotes along with Headings --------------------*/
+    //{this.state.fakeStickyNotes.map(fakeStickyNote => <h2 key={fakeStickyNote.id}>{fakeStickyNote.title}</h2>)}
     render() {
         
         return (

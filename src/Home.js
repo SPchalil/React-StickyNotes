@@ -3,7 +3,41 @@ import postit from './postit.png';
 import './index.css';
 import './StickyNotesApp.css';
 import { Link } from 'react-router-dom';
+/*
+const notes = [
+    {
+       key: "1",
+       index: "test",
+       title: "test",
+       positionX: "1",
+       positionY: "1",
+       color: "test",
+       bgColor: "test",
+       text: "test"
+    },
+    {
+       key: "2",
+       index: "test",
+       title: "test",
+       positionX: "test",
+       positionY: "test",
+       color: "test",
+       bgColor: "test",
+       text: "test"
+    },
+    {
+       key: "3",
+       index: "test",
+       title: "test",
+       positionX: "test",
+       positionY: "test",
+       color: "test",
+       bgColor: "test",
+       text: "test"
+    },
+ ]
 
+ */
 class Home extends React.Component {
     render() {
         return (
