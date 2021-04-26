@@ -28,42 +28,65 @@ class Board extends React.Component {
         this.onDrop = this.onDrop.bind(this);
         this.whenStickyNoteDragged = this.whenStickyNoteDragged.bind(this);
         this.onChangeStickyNote = this.onChangeStickyNote.bind(this);
-/*
+
         api.get('/').then(res => {
-            
-            //console.log(res.data)
-            const apiStickyNote = res.data;
+            console.log(res.data)
+            const apiStickyNotes = res.data;
             //console.log(apiStickyNote)
-            //const fakeStickyNotes =apiStickyNotes ;
-                const fakekey = apiStickyNote[0].key;
-                const faketitle = apiStickyNote[0].title;
-                const fakeposX = apiStickyNote[0].positionX;
-                const fakeposY = apiStickyNote[0].positionY;
-                const fakecolor = apiStickyNote[0].color;
-                const fakebgColor = apiStickyNote[0].bgColor;
-                const faketext = apiStickyNote[0].text;
-
-               const fakeStickyNote =
-                    <StickyNote
-                        key={fakekey}
-                        title={faketitle}
-                        positionX={fakeposX}
-                        positionY={fakeposY}
-                        color={fakecolor}
-                        bgColor={fakebgColor}
-                        index="0"
-                        text={faketext}
-                        
-                    />
+            const currentStickyNotes = [];
+            const fakeStickyNotes =[];
+            
+            //apiStickyNotes.forEach(addFunction);
+            for (let i=0; i<3; i++){
+             
+                const fakeStickyNote =
                 
-                this.setState({
-                    currentStickyNotes: fakeStickyNote
-
-                });
+                    <StickyNote
+                        key={apiStickyNotes[i].key}
+                        title={apiStickyNotes[i].title}
+                        positionX={apiStickyNotes[i].positionX}
+                        positionY={apiStickyNotes[i].positionY}
+                        color={apiStickyNotes[i].color}
+                        bgColor={apiStickyNotes[i].bgColor}
+                        index={apiStickyNotes[i].key}
+                        text={apiStickyNotes[i].text}  
+                    /> 
+                    
+                    currentStickyNotes.push(fakeStickyNote);
+                    }
+                         
+                    //currentStickyNotes.push(fakeStickyNote);
+                    this.setState({
+                        currentStickyNotes: currentStickyNotes
+                    });
                 
         })
-        */
+        
     }
+    /*
+    function addFunction(index) { 
+    title={apiStickyNotes[index].title}    
+    const fakeStickyNote =
+                    <StickyNote
+                        key={apiStickyNote[0].key}
+                        title={apiStickyNote[0].title}
+                        positionX={apiStickyNote[0].positionX}
+                        positionY={apiStickyNote[0].positionY}
+                        color={apiStickyNote[0].color}
+                        bgColor={apiStickyNote[0].bgColor}
+                        index="0"
+                        text={apiStickyNote[0].text}  
+                    />
+                
+                    currentStickyNotes.push(fakeStickyNote);
+                    this.setState({
+                        currentStickyNotes: currentStickyNotes
+                    });
+    
+    
+    
+    
+    */
     
     
     //fakeStickyNotes:[],
