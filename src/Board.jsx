@@ -28,13 +28,14 @@ class Board extends React.Component {
         this.onDrop = this.onDrop.bind(this);
         this.whenStickyNoteDragged = this.whenStickyNoteDragged.bind(this);
         this.onChangeStickyNote = this.onChangeStickyNote.bind(this);
-
+        
+        const currentStickyNotes = [];
         api.get('/').then(res => {
             console.log(res.data)
             const apiStickyNotes = res.data;
             //console.log(apiStickyNote)
-            const currentStickyNotes = [];
-            const fakeStickyNotes =[];
+            //const currentStickyNotes = [];
+            //const fakeStickyNotes =[];
             
             //apiStickyNotes.forEach(addFunction);
             for (let i=0; i<3; i++){
@@ -64,6 +65,9 @@ class Board extends React.Component {
         
     }
     /*
+    apiStickyNotes.forEach((stickyNote) => {
+   // Do something similar to what you are doing in your for loop
+});
     function addFunction(index) { 
     title={apiStickyNotes[index].title}    
     const fakeStickyNote =
