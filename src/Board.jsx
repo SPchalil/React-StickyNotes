@@ -8,7 +8,7 @@ import axios from 'axios';
 //****--------------------------Board  Class Component ------------------------****//
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000/notes'
+    baseURL: 'http://localhost:3000/stickynotes'
 })
 
 class Board extends React.Component {
@@ -38,18 +38,18 @@ class Board extends React.Component {
             //const fakeStickyNotes =[];
             
             //apiStickyNotes.forEach(addFunction);
-            for (let i=0; i<3; i++){
+            for (let i=0; i<10; i++){
              
                 const fakeStickyNote =
                 
                     <StickyNote
-                        key={apiStickyNotes[i].key}
+                        key={apiStickyNotes[i].stickynotekey}
                         title={apiStickyNotes[i].title}
-                        positionX={apiStickyNotes[i].positionX}
-                        positionY={apiStickyNotes[i].positionY}
+                        positionX={apiStickyNotes[i].posx}
+                        positionY={apiStickyNotes[i].posy}
                         color={apiStickyNotes[i].color}
-                        bgColor={apiStickyNotes[i].bgColor}
-                        index={apiStickyNotes[i].key}
+                        bgColor={apiStickyNotes[i].bgcolor}
+                        index={apiStickyNotes[i].stickynotekey}
                         text={apiStickyNotes[i].text}  
                     /> 
                     
