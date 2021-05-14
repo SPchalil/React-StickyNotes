@@ -3,6 +3,7 @@ import logIn2 from './logIn2.png'
 import './Register.css';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
+
 class Register extends React.Component {
     constructor(props) {
         super(props);

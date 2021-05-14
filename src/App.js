@@ -1,14 +1,15 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import LogIn from "./LogIn";
-import './index.css';
-import './StickyNotesApp.css';
+
 import Home from "./Home";
+import LogIn from "./LogIn";
 import StickyNotesApp from './StickyNotesApp';
 import Register from './Register';
 import Thanks from './Thanks';
 import Logout from './Logout';
-//import Board from './Board';
+
+import './index.css';
+import './StickyNotesApp.css';
 
 function App() {
     return (
