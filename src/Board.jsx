@@ -28,6 +28,8 @@ class Board extends React.Component {
         this.onDrop = this.onDrop.bind(this);
         this.whenStickyNoteDragged = this.whenStickyNoteDragged.bind(this);
         this.onChangeStickyNote = this.onChangeStickyNote.bind(this);
+
+        //this.hideapiStickyNoteHandler = this.hideapiStickyNoteHandler.bind(this);
         
         const currentStickyNotes = [];
         api.get('/').then(res => {
@@ -36,9 +38,34 @@ class Board extends React.Component {
             //console.log(apiStickyNote)
             //const currentStickyNotes = [];
             //const fakeStickyNotes =[];
-            
+            let index = currentStickyNotes.length;
             //apiStickyNotes.forEach(addFunction);
-            for (let i=0; i<10; i++){
+           
+            /*
+            apiStickyNotes.forEach(myFunction);
+            function myFunction(key){
+                const fakeStickyNote =
+                <StickyNote
+                        key={apiStickyNotes[key].stickynotekey}
+                        title={apiStickyNotes[key].title}
+                        positionX={apiStickyNotes[key].posx}
+                        positionY={apiStickyNotes[key].posy}
+                        color={apiStickyNotes[key].color}
+                        bgColor={apiStickyNotes[key].bgcolor}
+                        index={index}
+                        text={apiStickyNotes[key].text} 
+                        //hideAction={this.hideStickyNoteHandler} 
+                    /> 
+                currentStickyNotes.push(fakeStickyNote);
+             };
+
+             this.setState({
+                        currentStickyNotes: currentStickyNotes
+                    });
+            */
+           
+            let items = apiStickyNotes.length;
+            for (let i=0; i<items; i++){
              
                 const fakeStickyNote =
                 
@@ -49,8 +76,12 @@ class Board extends React.Component {
                         positionY={apiStickyNotes[i].posy}
                         color={apiStickyNotes[i].color}
                         bgColor={apiStickyNotes[i].bgcolor}
-                        index={apiStickyNotes[i].stickynotekey}
-                        text={apiStickyNotes[i].text}  
+                        index={index}
+                        text={apiStickyNotes[i].text} 
+                        hideAction={this.hideStickyNoteHandler}
+                        dragAction={this.whenStickyNoteDragged}
+                        onChangeAction={this.onChangeStickyNote}
+                        //hideAction={this.hideapiStickyNoteHandler} 
                     /> 
                     
                     currentStickyNotes.push(fakeStickyNote);
@@ -60,10 +91,23 @@ class Board extends React.Component {
                     this.setState({
                         currentStickyNotes: currentStickyNotes
                     });
-                
+
+                    
+              
         })
+
+        
         
     }
+/*
+    hideapiStickyNoteHandler(index) {
+        const apiNewStickyNotes = [...this.state.currentStickyNotes];
+        apiNewStickyNotes.splice(index, 1, null);
+        this.setState({
+            currentStickyNotes: apiNewStickyNotes
+        });
+    }        
+*/
     /*
     apiStickyNotes.forEach((stickyNote) => {
    // Do something similar to what you are doing in your for loop
@@ -174,6 +218,8 @@ class Board extends React.Component {
             currentStickyNotes: newStickyNotes
         });
     }
+
+    /*-----------------Drag & Drop Sticky Notes --------------*/
     onDragOver = (event) => {
         event.preventDefault();
     }
