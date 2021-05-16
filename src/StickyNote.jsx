@@ -1,7 +1,9 @@
 import React from "react";
 import EditText from "./EditText";
 import ColorPicker from "./ColorPicker";
+
 //****--------------------------StickyNote Class Component ------------------------****//
+
 //Creating a StickyNote with properties (text/positions/color/bgcolor/showColorPicker/index/action)
 class StickyNote extends React.Component {
     constructor(props) {
@@ -25,6 +27,9 @@ class StickyNote extends React.Component {
         this.colorChangeHandler = this.colorChangeHandler.bind(this);
         this.handleChangeText = this.handleChangeText.bind(this);
     }
+
+    /*------Color Picker - Change color of the stickynote-------------------*/
+    
     colorChangeHandler(newColor) {
         this._props.bgColor = newColor;
         this.state.onChangeAction(this._props);
@@ -42,18 +47,28 @@ class StickyNote extends React.Component {
             />
         );
     }
+
+    /*------------------------------------------------------------------------*/
+
     handleDelete = () => {
         this.state.hideAction(this._props.index);
     }
+    /*------------------------------------------------------------------------*/
+
     onDrag = (event) => {
         event.preventDefault();
         this.state.dragAction(this._props.index);
     }
+
+    /*------------------------------------------------------------------------*/
+    
     handleChangeText = (text) => {
         this._props.text = text;
         this.state.onChangeAction(this._props);
     }
+    
     /*-----------------Render StickyNote (with the styles and a heading) inside the Board / Delete the StickyNote--------------------*/
+   
     render() {
         const stickyNoteStyle = {
             left: this._props.positionX,
