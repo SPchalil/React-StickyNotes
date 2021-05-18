@@ -35,7 +35,7 @@ class Board extends React.Component {
         api.get('/').then(res => {
             console.log(res.data)
             const apiStickyNotes = res.data;
-            //console.log(apiStickyNote)
+            console.log(apiStickyNotes)
             //const currentStickyNotes = [];
             //const fakeStickyNotes =[];
             
@@ -218,7 +218,7 @@ class Board extends React.Component {
         const stickynoteindex = index;
         api.delete(`/${stickynoteindex}`)  
         .then(res => {  
-        console.log(res);  
+        //console.log(res);  
         console.log(res.data);  
     })  
         

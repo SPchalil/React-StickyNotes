@@ -15,7 +15,7 @@ class StickyNote extends React.Component {
             onChangeAction: props.onChangeAction
         };
         this._props = {
-            key: props.index,
+            key: props.key,
             index: props.index,
             title: props.title,
             positionX: props.positionX,
