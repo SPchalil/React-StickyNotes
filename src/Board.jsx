@@ -68,13 +68,13 @@ class Board extends React.Component {
                 const fakeStickyNote =
                 
                     <StickyNote
-                        key={apiStickyNotes[i].stickynotekey}
+                        key={apiStickyNotes[i].stickynoteid}
                         title={apiStickyNotes[i].title}
                         positionX={apiStickyNotes[i].posx}
                         positionY={apiStickyNotes[i].posy}
                         color={apiStickyNotes[i].color}
                         bgColor={apiStickyNotes[i].bgcolor}
-                        index={apiStickyNotes[i].stickynoteindex}
+                        index={apiStickyNotes[i].stickynoteid}
                         text={apiStickyNotes[i].text} 
                         hideAction={this.hideStickyNoteHandler}
                         dragAction={this.whenStickyNoteDragged}
@@ -180,6 +180,7 @@ class Board extends React.Component {
                 [
                     <StickyNote                //calling the StickyNote component passing the properties
                         key={`StickyNote_${index}`}
+                        //key={index}
                         title="Work"
                         positionX={posX}
                         positionY={posY}
@@ -215,12 +216,13 @@ class Board extends React.Component {
             currentStickyNotes: newStickyNotes
         });
 
-        const stickynoteindex = index;
-        api.delete(`/${stickynoteindex}`)  
-        .then(res => {  
+        //const stickynoteid = index;
+        //api.delete(`/${stickynoteid}`)  
+        //.then(res => {  
         //console.log(res);  
-        console.log(res.data);  
-    })  
+        //console.log(res.data); 
+        
+    //})  
         
     }
     
@@ -236,11 +238,56 @@ class Board extends React.Component {
     onDragOver = (event) => {
         event.preventDefault();
     }
-    /*-----------------Change in color/text______________*/
+
+        /*--------Drop----------*/
+        onDrop = (e) => {
+            e.preventDefault();
+            if (this.state.draggedStickyNoteIndex !== null) {
+                const Xmax = this.state.width - 200;
+                const Ymax = this.state.height - 200;
+                let posX = e.nativeEvent.offsetX;  // X and Y coordinates of the mouse click position
+                let posY = e.nativeEvent.offsetY;
+                if (posX > Xmax) {                 // positioning w.r.t the size of the Board
+                    posX = e.nativeEvent.offsetX - 200;
+                }
+                if (posY > Ymax) {
+                    posY = e.nativeEvent.offsetY - 200;
+                }
+                const index = this.state.draggedStickyNoteIndex;
+                const oldStickyNote = this.state.currentStickyNotes[index];
+                const newStickyNote =
+                    <StickyNote
+                        //key={`${oldStickyNote.key}_1`}
+                        //key = {oldStickyNote.props.key}
+                        //key={`${oldStickyNote.props.key}_1`}
+                        //key = {`${oldStickyNote.index}_1`}
+                        key = {`StickyNote_Dragdropped_${oldStickyNote.props.index}`}
+                        title={oldStickyNote.props.title}
+                        positionX={posX}
+                        positionY={posY}
+                        color={oldStickyNote.props.color}
+                        bgColor={oldStickyNote.props.bgColor}
+                        index={oldStickyNote.props.index}
+                        text={oldStickyNote.props.text}
+                        hideAction={this.hideStickyNoteHandler}
+                        dragAction={this.whenStickyNoteDragged}
+                        onChangeAction={this.onChangeStickyNote}
+                    />
+                const newStickyNotes = [...this.state.currentStickyNotes];
+                newStickyNotes.splice(index, 1, newStickyNote);
+                this.setState({
+                    currentStickyNotes: newStickyNotes,
+                    draggedStickyNoteIndex: null
+                });
+            }
+        }
+    /*-----------------Change in color/text----------------*/
     onChangeStickyNote(newProps) {
         const newStickyNote =
             <StickyNote
-                key={`${newProps.key}_1`}
+                //key={`${newProps.key}_1`}
+                //key = {newProps.index}
+                key = {`StickyNote_colorChanged_${newProps.index}`}
                 title={newProps.title}
                 positionX={newProps.positionX}
                 positionY={newProps.positionY}
@@ -258,44 +305,7 @@ class Board extends React.Component {
             currentStickyNotes: newStickyNotes
         });
     }
-    /*------------------------Drop----------*/
-    onDrop = (e) => {
-        e.preventDefault();
-        if (this.state.draggedStickyNoteIndex !== null) {
-            const Xmax = this.state.width - 200;
-            const Ymax = this.state.height - 200;
-            let posX = e.nativeEvent.offsetX;  // X and Y coordinates of the mouse click position
-            let posY = e.nativeEvent.offsetY;
-            if (posX > Xmax) {                 // positioning w.r.t the size of the Board
-                posX = e.nativeEvent.offsetX - 200;
-            }
-            if (posY > Ymax) {
-                posY = e.nativeEvent.offsetY - 200;
-            }
-            const index = this.state.draggedStickyNoteIndex;
-            const oldStickyNote = this.state.currentStickyNotes[index];
-            const newStickyNote =
-                <StickyNote
-                    key={`${oldStickyNote.key}_1`}
-                    title={oldStickyNote.props.title}
-                    positionX={posX}
-                    positionY={posY}
-                    color={oldStickyNote.props.color}
-                    bgColor={oldStickyNote.props.bgColor}
-                    index={oldStickyNote.props.index}
-                    text={oldStickyNote.props.text}
-                    hideAction={this.hideStickyNoteHandler}
-                    dragAction={this.whenStickyNoteDragged}
-                    onChangeAction={this.onChangeStickyNote}
-                />
-            const newStickyNotes = [...this.state.currentStickyNotes];
-            newStickyNotes.splice(index, 1, newStickyNote);
-            this.setState({
-                currentStickyNotes: newStickyNotes,
-                draggedStickyNoteIndex: null
-            });
-        }
-    }
+
     
     /*-----------------Render Board- with StickyNotes along with Headings --------------------*/
     //{this.state.fakeStickyNotes.map(fakeStickyNote => <h2 key={fakeStickyNote.id}>{fakeStickyNote.title}</h2>)}
