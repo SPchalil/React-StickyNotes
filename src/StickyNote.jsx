@@ -17,6 +17,7 @@ class StickyNote extends React.Component {
         this._props = {
             key: props.index,
             //key:props.key,
+            id:props.id,
             index: props.index,
             title: props.title,
             positionX: props.positionX,

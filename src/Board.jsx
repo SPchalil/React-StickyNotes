@@ -7,7 +7,7 @@ import axios from 'axios';
 
 
 const api = axios.create({
-    baseURL: 'http://localhost:3000/stickynotes'
+    baseURL: 'http://localhost:3001'
 })
 
 //****--------------------------Board  Class Component ------------------------****//
@@ -32,7 +32,7 @@ class Board extends React.Component {
         
  /*--------------------------------API call------------------------------------------*/
         const currentStickyNotes = [];
-        api.get('/').then(res => {
+        api.get('/stickynotes').then(res => {
             console.log(res.data)
             const apiStickyNotes = res.data;
             console.log(apiStickyNotes)
@@ -75,6 +75,7 @@ class Board extends React.Component {
                         color={apiStickyNotes[i].color}
                         bgColor={apiStickyNotes[i].bgcolor}
                         index={apiStickyNotes[i].stickynoteid}
+                        id={apiStickyNotes[i].stickynoteid}
                         text={apiStickyNotes[i].text} 
                         hideAction={this.hideStickyNoteHandler}
                         dragAction={this.whenStickyNoteDragged}
@@ -175,6 +176,7 @@ class Board extends React.Component {
         let index = currentStickyNotes.length;
 
         // New state - Adding new stickyNote to the currentStickyNotes array 
+        const id = 0;
         this.setState({
             currentStickyNotes: currentStickyNotes.concat(   // concat - join two or more arrays, & returns a new array containing the values of the joined arrays
                 [
@@ -187,6 +189,7 @@ class Board extends React.Component {
                         color="black"
                         bgColor={bcolor}
                         index={index}
+                        id={id}
                         text=""
                         hideAction={this.hideStickyNoteHandler}
                         dragAction={this.whenStickyNoteDragged}
@@ -210,23 +213,25 @@ class Board extends React.Component {
     /*-----------------Hide Sticky Notes --------------------*/
     hideStickyNoteHandler(index) {
         const newStickyNotes = [...this.state.currentStickyNotes];
-        newStickyNotes.splice(index, 1, null);  // index- integer value that specifies at what position to remove item, 
-                                                //howmany -1, the new item to be added to the array - null
+        newStickyNotes.splice(index, 1, null);
+        // TODO: the above line does not work. why? because we cannot use id as array index for splice function. solution: use array filter() to remove the sticky note with this id
+        //newStickyNotes.filter(newstickyNotes => newstickyNotes.id != id);
+        //console.log(newStickyNotes);
+       // newStickyNotes.filter(StickyNote=> StickyNote.id != id);
         this.setState({
             currentStickyNotes: newStickyNotes
         });
 
-        //const stickynoteid = index;
-        //api.delete(`/${stickynoteid}`)  
-        //.then(res => {  
-        //console.log(res);  
-        //console.log(res.data); 
+      let stickynoteid = index;
+        api.delete(`/stickynotes/${stickynoteid}`)  
+        .then(res => {  
+        console.log(res);  
+        console.log(res.data); 
         
-    //})  
+    })  
         
     }
     
-
     /*-----------------Drag & Drop Sticky Notes --------------*/
 
     whenStickyNoteDragged(index) {
