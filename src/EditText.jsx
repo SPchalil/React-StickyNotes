@@ -1,4 +1,4 @@
-/*-------------------------TextInput---------------------------*/
+/*-------------------------TextInput--(Functional Component)-------------------------*/
 /*
 import React, { useState } from 'react';
 import { View, StyleSheet,TextInput} from 'react-native';
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
 });
 
 */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------Class component---------------------------------------------------*/
 
 import React from 'react';
 import { View, StyleSheet,TextInput} from 'react-native';

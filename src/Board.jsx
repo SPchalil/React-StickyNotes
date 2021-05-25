@@ -176,7 +176,8 @@ class Board extends React.Component {
         let index = currentStickyNotes.length;
 
         // New state - Adding new stickyNote to the currentStickyNotes array 
-        const id = 0;
+        //const id = 0;
+        let id = Date.now();
         this.setState({
             currentStickyNotes: currentStickyNotes.concat(   // concat - join two or more arrays, & returns a new array containing the values of the joined arrays
                 [
@@ -211,11 +212,12 @@ class Board extends React.Component {
         );
     }
     /*-----------------Hide Sticky Notes --------------------*/
+    /*
     hideStickyNoteHandler(index) {
         const newStickyNotes = [...this.state.currentStickyNotes];
         newStickyNotes.splice(index, 1, null);
         // TODO: the above line does not work. why? because we cannot use id as array index for splice function. solution: use array filter() to remove the sticky note with this id
-        //newStickyNotes.filter(newstickyNotes => newstickyNotes.id != id);
+        //newStickyNotes.filter(newstickyNotes => newstickyNotes.id !== id);
         //console.log(newStickyNotes);
        // newStickyNotes.filter(StickyNote=> StickyNote.id != id);
         this.setState({
@@ -223,6 +225,24 @@ class Board extends React.Component {
         });
 
       let stickynoteid = index;
+        api.delete(`/stickynotes/${stickynoteid}`)  
+        .then(res => {  
+        console.log(res);  
+        console.log(res.data); 
+        
+    })  
+        
+    }
+    */
+    hideStickyNoteHandler(id) {
+        const newStickyNotes = [...this.state.currentStickyNotes];
+        console.log(newStickyNotes);
+        let filteredStickyNotes = newStickyNotes.filter(StickyNote => StickyNote.props.id !== id);
+        this.setState({
+            currentStickyNotes: filteredStickyNotes
+        });
+
+      let stickynoteid = id;
         api.delete(`/stickynotes/${stickynoteid}`)  
         .then(res => {  
         console.log(res);  
@@ -286,13 +306,16 @@ class Board extends React.Component {
                 });
             }
         }
-    /*-----------------Change in color/text----------------*/
-    onChangeStickyNote(newProps) {
+    
+        /*-----------------Change in color/text----------------*/
+   
+        onChangeStickyNote(newProps) {
         const newStickyNote =
             <StickyNote
                 //key={`${newProps.key}_1`}
                 //key = {newProps.index}
-                key = {`StickyNote_colorChanged_${newProps.index}`}
+                key = {`StickyNote_colorOrtextChanged_${newProps.index}`}
+                id = {newProps.id}
                 title={newProps.title}
                 positionX={newProps.positionX}
                 positionY={newProps.positionY}
@@ -306,9 +329,12 @@ class Board extends React.Component {
             />
         const newStickyNotes = [...this.state.currentStickyNotes];
         newStickyNotes.splice(newProps.index, 1, newStickyNote);
+        
         this.setState({
             currentStickyNotes: newStickyNotes
         });
+
+        //api.put-update
     }
 
     

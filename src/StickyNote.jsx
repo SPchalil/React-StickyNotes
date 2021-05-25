@@ -51,10 +51,14 @@ class StickyNote extends React.Component {
     }
 
     /*------------------------------------------------------------------------*/
-
+/*
     handleDelete = () => {
         this.state.hideAction(this._props.index);
     }
+*/
+handleDelete = () => {
+    this.state.hideAction(this._props.id);
+}
     /*------------------------------------------------------------------------*/
 
     onDrag = (event) => {
