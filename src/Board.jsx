@@ -211,7 +211,7 @@ class Board extends React.Component {
             this.state.currentStickyNotes   //current stickynote along with the previous ones
         );
     }
-    /*-----------------Hide Sticky Notes --------------------*/
+    /*-----------------Hide Sticky Notes(index) --------------------*/
     /*
     hideStickyNoteHandler(index) {
         const newStickyNotes = [...this.state.currentStickyNotes];
@@ -234,6 +234,8 @@ class Board extends React.Component {
         
     }
     */
+   /*-----------------Delete Sticky Notes (id)--------------*/
+
     hideStickyNoteHandler(id) {
         const newStickyNotes = [...this.state.currentStickyNotes];
         console.log(newStickyNotes);
@@ -287,6 +289,7 @@ class Board extends React.Component {
                         //key={`${oldStickyNote.props.key}_1`}
                         //key = {`${oldStickyNote.index}_1`}
                         key = {`StickyNote_Dragdropped_${oldStickyNote.props.index}`}
+                        id = {oldStickyNote.props.id}
                         title={oldStickyNote.props.title}
                         positionX={posX}
                         positionY={posY}
@@ -335,6 +338,15 @@ class Board extends React.Component {
         });
 
         //api.put-update
+
+        let stickynoteid = newProps.id;
+        let text=newProps.text;
+        api.patch(`/stickynotes/${stickynoteid}`, {text:`${text}`})  
+        .then(res => {  
+        console.log(res);  
+        console.log(res.data); 
+        
+    })  
     }
 
     
