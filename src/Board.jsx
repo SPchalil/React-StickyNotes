@@ -5,7 +5,7 @@ import './StickyNotesApp.css';
 
 import axios from 'axios';
 
-
+//Backend
 const api = axios.create({
     baseURL: 'http://localhost:3001'
 })
@@ -18,7 +18,6 @@ class Board extends React.Component {
 
         this.state = {
             currentStickyNotes: [],
-            
             height: 0,
             width: 0,
             draggedStickyNoteIndex: null
@@ -30,7 +29,7 @@ class Board extends React.Component {
         this.whenStickyNoteDragged = this.whenStickyNoteDragged.bind(this);
         this.onChangeStickyNote = this.onChangeStickyNote.bind(this);
         
- /*--------------------------------API call------------------------------------------*/
+ /*--------------------------------Backend - API call -GET request-------------------*/
         const currentStickyNotes = [];
         api.get('/stickynotes').then(res => {
             console.log(res.data)
@@ -85,7 +84,6 @@ class Board extends React.Component {
                     currentStickyNotes.push(fakeStickyNote);
                     }
                          
-                    //currentStickyNotes.push(fakeStickyNote);
                     this.setState({
                         currentStickyNotes: currentStickyNotes
                     });
@@ -176,8 +174,8 @@ class Board extends React.Component {
         let index = currentStickyNotes.length;
 
         // New state - Adding new stickyNote to the currentStickyNotes array 
-        //const id = 0;
-        let id = Date.now();
+        
+        let id = Date.now(); //generating id's
         this.setState({
             currentStickyNotes: currentStickyNotes.concat(   // concat - join two or more arrays, & returns a new array containing the values of the joined arrays
                 [
@@ -200,25 +198,44 @@ class Board extends React.Component {
                 
                 
                 )
+
         });
+
+        /*-----------------Backend - creating Sticky Notes in the database--------------------*/
+        const userid = 1;
+        let stickynoteid = id;
+        let title = "Work";
+        let color = "black";
+        let text ="";
+        api.post(`/stickynotes`,
+         {userid:`${userid}`,
+         stickynoteid:`${stickynoteid}`, 
+         title:`${title}`,
+         posx:`${posX}`,
+         posy:`${posY}`,
+         bgcolor:`${bcolor}`,
+         color:`${color}`,
+         text:`${text}`
+        })  
+        .then(res => {  
+        console.log(res);  
+        console.log(res.data); 
+        }); 
     }
 
-
-    
     /*-----------------Render Sticky Notes --------------------*/
     renderStickyNotes() {
         return (
             this.state.currentStickyNotes   //current stickynote along with the previous ones
         );
     }
-    /*-----------------Hide Sticky Notes(index) --------------------*/
+    /*-----------------Hide Sticky Notes(using index) --------------------*/
     /*
     hideStickyNoteHandler(index) {
         const newStickyNotes = [...this.state.currentStickyNotes];
         newStickyNotes.splice(index, 1, null);
         // TODO: the above line does not work. why? because we cannot use id as array index for splice function. solution: use array filter() to remove the sticky note with this id
-        //newStickyNotes.filter(newstickyNotes => newstickyNotes.id !== id);
-        //console.log(newStickyNotes);
+
        // newStickyNotes.filter(StickyNote=> StickyNote.id != id);
         this.setState({
             currentStickyNotes: newStickyNotes
@@ -234,7 +251,7 @@ class Board extends React.Component {
         
     }
     */
-   /*-----------------Delete Sticky Notes (id)--------------*/
+   /*-----------------Delete Sticky Notes (using id)--------------*/
 
     hideStickyNoteHandler(id) {
         const newStickyNotes = [...this.state.currentStickyNotes];
@@ -244,7 +261,8 @@ class Board extends React.Component {
             currentStickyNotes: filteredStickyNotes
         });
 
-      let stickynoteid = id;
+      /*-----------------Backend -delete Sticky Note from the database--------------*/
+        let stickynoteid = id;
         api.delete(`/stickynotes/${stickynoteid}`)  
         .then(res => {  
         console.log(res);  
@@ -337,7 +355,8 @@ class Board extends React.Component {
             currentStickyNotes: newStickyNotes
         });
 
-        //api.put-update
+        /*-----------------Backend - edit text in the database----------------*/
+        //api.patch-update text
 
         let stickynoteid = newProps.id;
         let text=newProps.text;
@@ -345,8 +364,20 @@ class Board extends React.Component {
         .then(res => {  
         console.log(res);  
         console.log(res.data); 
+        }); 
+
+        /* //api.patch-update color
+
+         
+         let hexbgcolor=newProps.bgColor;
+         let bgcolor = hexbgcolor.substr(1,6);
+         api.patch(`/stickynotes/${stickynoteid}`, {bgcolor:`${bgcolor}`})  
+         .then(res => {  
+         console.log(res);  
+         console.log(res.data); 
+        });*/
         
-    })  
+        
     }
 
     
