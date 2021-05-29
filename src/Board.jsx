@@ -201,7 +201,7 @@ class Board extends React.Component {
 
         });
 
-        /*-----------------Backend - creating Sticky Notes in the database--------------------*/
+        /*-----------------Backend - Post-creating Sticky Notes in the database--------------------*/
         const userid = 1;
         let stickynoteid = id;
         let title = "Work";

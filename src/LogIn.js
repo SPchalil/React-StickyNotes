@@ -5,6 +5,14 @@ import './Register.css';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
+import axios from 'axios';
+
+//Backend
+const api = axios.create({
+    baseURL: 'http://localhost:3001'
+})
+
+
 class LogIn extends React.Component {
     constructor(props) {
         super(props);
@@ -59,6 +67,23 @@ class LogIn extends React.Component {
         event.preventDefault();
         if (this.validateForm(this.state.errors)) {
             console.info('Valid Form')
+
+
+            let email = this.state.email;
+            let password = this.state.password;
+
+            api.post(`/users`,
+            {
+            email:`${email}`, 
+            password:`${password}`
+            
+            })  
+            .then(res => {  
+            console.log(res);  
+            console.log(res.data); 
+            }); 
+
+
         } else {
             alert('Invalid Form')
             this.props.history.push("/login");

@@ -4,6 +4,13 @@ import './Register.css';
 import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 
+import axios from 'axios';
+
+//Backend
+const api = axios.create({
+    baseURL: 'http://localhost:3001'
+})
+
 class Register extends React.Component {
     constructor(props) {
         super(props);
@@ -65,12 +72,32 @@ class Register extends React.Component {
     handleSubmit = (event) => {
         event.preventDefault();
         const errors = this.validateForm(this.state.errors);
+        let username = this.state.username;
+        let email = this.state.email;
+        let password = this.state.password;
         if (!errors) {
-            this.props.history.push("/registered");
+            this.props.history.push("/registered");  
+            
+        api.post(`/users`,
+         {username:`${username}`,
+         email:`${email}`, 
+         password:`${password}`
+         
+        })  
+        .then(res => {  
+        console.log(res);  
+        console.log(res.data); 
+        }); 
+            
+
         } else {
             alert(errors);
         }
+
+        
     }
+
+    
     render() {
         const { errors } = this.state;
         return (
@@ -151,3 +178,23 @@ class Register extends React.Component {
     }
 }
 export default withRouter(Register);
+
+/*-------------------Backend- Post a new user---------------------
+
+        //const userid = 1;
+        //let username = this.state.username;
+        //let email = this.state.email;
+        //let password = this.state.password;
+       
+        api.post(`/users`,
+         {username:`${username}`,
+         email:`${email}`, 
+         password:`${password}`
+         
+        })  
+        .then(res => {  
+        console.log(res);  
+        console.log(res.data); 
+        }); 
+    
+    */
