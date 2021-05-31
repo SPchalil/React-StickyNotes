@@ -68,7 +68,7 @@ class LogIn extends React.Component {
         if (this.validateForm(this.state.errors)) {
             console.info('Valid Form')
 
-
+// backend-login
             let email = this.state.email;
             let password = this.state.password;
 
