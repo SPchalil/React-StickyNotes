@@ -72,7 +72,7 @@ class LogIn extends React.Component {
             let email = this.state.email;
             let password = this.state.password;
 
-            api.post(`/users`,
+            api.post(`/login`,
             {
             email:`${email}`, 
             password:`${password}`
@@ -80,7 +80,15 @@ class LogIn extends React.Component {
             })  
             .then(res => {  
             console.log(res);  
-            console.log(res.data); 
+            console.log(res.data);
+            if (res.data == 0){
+                alert("Invalid login; Please login again");
+                //this.props.history.push("/login");
+                window.location.reload();
+            }
+            else{
+                this.props.history.push("/stickynotesapp/Esteban");
+            } 
             }); 
 
 
@@ -133,7 +141,7 @@ class LogIn extends React.Component {
                     <div className="formButtons">
                         <nav>
                             <button className="logInCancelButton" ><Link style={{ textDecoration: 'none' }} to="/home">Cancel</Link></button>
-                            <button className="logInEnterButton" type="submit" onClick={this.handleSubmit}><Link style={{ textDecoration: 'none', color: '#FFF' }} to="/stickynotesapp/Esteban">Enter</Link></button>
+                            <button className="logInEnterButton" type="submit" onClick={this.handleSubmit}>Enter</button>
                         </nav>
                     </div>
                 </form>
@@ -143,3 +151,5 @@ class LogIn extends React.Component {
 }
 
 export default withRouter(LogIn);
+
+//<button className="logInEnterButton" type="submit" onClick={this.handleSubmit}><Link style={{ textDecoration: 'none', color: '#FFF' }} to="/stickynotesapp/Esteban">Enter</Link></button>

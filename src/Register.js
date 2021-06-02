@@ -76,26 +76,54 @@ class Register extends React.Component {
         let email = this.state.email;
         let password = this.state.password;
         if (!errors) {
-            this.props.history.push("/registered");  
-            
-        api.post(`/users`,
-         {username:`${username}`,
-         email:`${email}`, 
-         password:`${password}`
-         
-        })  
-        .then(res => {  
-        console.log(res);  
-        console.log(res.data); 
-        }); 
-            
+            //this.props.history.push("/registered");  
+            api.post('/check', {
+                username:`${username}`,
+                email:`${email}`, 
+                password:`${password}`
 
-        } else {
+            })
+            .then(res => {
+                console.log(res.data);
+                //console.log("No Records");
+                if (res.data == 0){
+                    console.log("No Records");
+                    api.post(`/register`,
+                    {username:`${username}`,
+                    email:`${email}`, 
+                    password:`${password}`
+                    
+                   })  
+                   .then(res => {  
+                   console.log(res);  
+                   console.log(res.data); 
+                   }); 
+
+                   
+
+                }
+
+                else{
+                    console.log("User already exists");
+                    alert("User already exists!Please log in");
+                    this.props.history.push("/login"); 
+                }
+                this.props.history.push("/registered");
+                
+                  });
+                  
+        
+        
+        //this.props.history.push("/registered");     
+
+        } 
+        else {
             alert(errors);
         }
 
         
     }
+
 
     
     render() {
