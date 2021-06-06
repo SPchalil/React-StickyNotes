@@ -89,7 +89,7 @@ class LogIn extends React.Component {
             else{
                 //this.props.history.push("/stickynotesapp/Esteban");
                 let username = res.data[0].username;
-                console.log("user: ",username);
+                console.log("id: ",username);
                 this.props.history.push(`/stickynotesapp/${username}`);
             } 
             }); 

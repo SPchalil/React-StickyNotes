@@ -69,6 +69,8 @@ class Register extends React.Component {
         }
         this.setState({ errors, [name]: value });
     }
+
+    /*----------------------------backend -registration ------------------------------*/
     handleSubmit = (event) => {
         event.preventDefault();
         const errors = this.validateForm(this.state.errors);
@@ -76,6 +78,27 @@ class Register extends React.Component {
         let email = this.state.email;
         let password = this.state.password;
         if (!errors) {
+
+            api.post(`/registration`,
+                    {username:`${username}`,
+                    email:`${email}`, 
+                    password:`${password}`
+                    
+                   })  
+                   .then(res => {  
+                   console.log(res);  
+                   console.log(res.data); 
+                   console.log("User is registered")
+                   this.props.history.push("/registered");
+                   }) 
+                   .catch(res => {
+                    console.log(res.data);
+                         console.log("User already exists")
+                        alert("User already exists; Please login");
+                             this.props.history.push("/login");
+                             
+                    });
+            /*-------------------------------------------------------
             //this.props.history.push("/registered");  
             api.post('/check', {
                 username:`${username}`,
@@ -86,7 +109,7 @@ class Register extends React.Component {
             .then(res => {
                 console.log(res.data);
                 //console.log("No Records");
-                if (res.data == 0){
+                if (res.data == 0){    //res.data.length
                     console.log("No Records");
                     api.post(`/register`,
                     {username:`${username}`,
@@ -113,7 +136,7 @@ class Register extends React.Component {
                   });
                   
         
-        
+        ---------------------------------------------------*/
         //this.props.history.push("/registered");     
 
         } 
