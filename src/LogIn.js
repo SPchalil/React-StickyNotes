@@ -81,7 +81,7 @@ class LogIn extends React.Component {
             .then(res => {  
             console.log(res);  
             console.log(res.data);
-            if (res.data == 0){
+            if (res.data.length === 0){
                 alert("Invalid login; Please login again");
                 //this.props.history.push("/login");
                 window.location.reload();
