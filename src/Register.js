@@ -79,7 +79,7 @@ class Register extends React.Component {
         let password = this.state.password;
         if (!errors) {
 
-            api.post(`/registration`,
+           /* api.post(`/registration`,
                     {username:`${username}`,
                     email:`${email}`, 
                     password:`${password}`
@@ -97,8 +97,8 @@ class Register extends React.Component {
                         alert("User already exists; Please login");
                              this.props.history.push("/login");
                              
-                    });
-            /*-------------------------------------------------------
+                    });*/
+            
             //this.props.history.push("/registered");  
             api.post('/check', {
                 username:`${username}`,
@@ -109,7 +109,7 @@ class Register extends React.Component {
             .then(res => {
                 console.log(res.data);
                 //console.log("No Records");
-                if (res.data == 0){    //res.data.length
+                if (res.data.length === 0){    //res.data.length
                     console.log("No Records");
                     api.post(`/register`,
                     {username:`${username}`,
@@ -122,7 +122,7 @@ class Register extends React.Component {
                    console.log(res.data); 
                    }); 
 
-                   
+                   this.props.history.push("/registered");
 
                 }
 
@@ -131,12 +131,12 @@ class Register extends React.Component {
                     alert("User already exists!Please log in");
                     this.props.history.push("/login"); 
                 }
-                this.props.history.push("/registered");
+                //this.props.history.push("/registered");
                 
                   });
                   
         
-        ---------------------------------------------------*/
+       
         //this.props.history.push("/registered");     
 
         } 
